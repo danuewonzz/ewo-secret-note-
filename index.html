@@ -442,8 +442,6 @@ header {
 
 const PASSWORD = "19971128";
 
-const PASSWORD = "19971128";
-
 const loginPage = document.getElementById("loginPage");
 const homePage = document.getElementById("homePage");
 const password = document.getElementById("password");
@@ -452,67 +450,20 @@ const error = document.getElementById("error");
 const notification =
 document.getElementById("quoteNotification");
 
-let unlocked = false;
+// LOGIN AND AUTO UNLOCK
 
-function checkPassword() {
+document.getElementById("loginForm")
+.addEventListener("submit", function(e) {
 
-  if (unlocked) return;
+  e.preventDefault();
 
   if (password.value === PASSWORD) {
-
-    unlocked = true;
 
     loginPage.style.display = "none";
     homePage.style.display = "block";
 
     password.value = "";
     error.textContent = "";
-
-    setTimeout(function() {
-      notification.classList.add("show");
-    }, 500);
-  }
-}
-
-// AUTO UNLOCK WHILE TYPING
-
-password.addEventListener("input", checkPassword);
-
-// SHOW / HIDE PASSWORD
-
-document.getElementById("toggle")
-.addEventListener("click", function() {
-
-  if (password.type === "password") {
-    password.type = "text";
-    this.textContent = "HIDE";
-  } else {
-    password.type = "password";
-    this.textContent = "SHOW";
-  }
-
-});
-
-// CLOSE NOTIFICATION
-
-document.getElementById("closeNotification")
-.addEventListener("click", function() {
-  notification.classList.remove("show");
-});
-
-// LOG OUT
-
-document.getElementById("logout")
-.addEventListener("click", function() {
-
-  unlocked = false;
-  notification.classList.remove("show");
-
-  homePage.style.display = "none";
-  loginPage.style.display = "flex";
-  password.value = "";
-});
-
 
     // SHOW LOVE QUOTE NOTIFICATION
 
