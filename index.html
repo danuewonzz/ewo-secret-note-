@@ -23,7 +23,7 @@ body {
   min-height: 100vh;
 }
 
-/* LOGIN */
+/* LOGIN PAGE */
 
 #loginPage {
   min-height: 100vh;
@@ -136,7 +136,7 @@ input::placeholder {
   margin-top: 60px;
 }
 
-/* HOME */
+/* HOME PAGE */
 
 #homePage {
   display: none;
@@ -266,10 +266,65 @@ header {
   letter-spacing: 4px;
 }
 
+/* LOVE QUOTE NOTIFICATION */
+
+#quoteNotification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, -150%);
+  width: calc(100% - 36px);
+  max-width: 390px;
+  padding: 23px 20px;
+  background: #101010;
+  border: 1px solid #c9a84c;
+  border-radius: 9px;
+  box-shadow: 0 10px 40px #000b;
+  z-index: 100;
+  text-align: center;
+  opacity: 0;
+  transition: transform .6s ease, opacity .6s ease;
+}
+
+#quoteNotification.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.notification-title {
+  color: #d6b86a;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.notification-quote {
+  color: #eee;
+  font-size: 12px;
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+.notification-close {
+  margin-top: 18px;
+  padding: 9px 22px;
+  background: transparent;
+  border: 1px solid #c9a84c;
+  color: #d6b86a;
+  font-size: 9px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
 @media(max-width:480px) {
   .moon {
     width: 145px;
     height: 145px;
+  }
+
+  .welcome h1 {
+    letter-spacing: 5px;
   }
 }
 </style>
@@ -277,15 +332,17 @@ header {
 
 <body>
 
+<!-- LOGIN PAGE -->
+
 <section id="loginPage">
 
   <div class="login-box">
 
     <div class="logo">EWO</div>
+
     <div class="subtitle">PRIVATE SPACE</div>
 
-    <h2>"Even if I die, I will always love that heart with all mine. When I'm no longer around, please keep living happily. 🥀"
-</h2>
+    <h2>Welcome Back</h2>
 
     <p class="description">
       Enter your password to continue
@@ -299,6 +356,7 @@ header {
           type="password"
           id="password"
           placeholder="Enter Password"
+          autocomplete="current-password"
           required
         >
 
@@ -317,18 +375,24 @@ header {
     </form>
 
     <div class="footer">
-      DANU EWONZ • 2026 
+      DANU EWONZ • 2026
     </div>
 
   </div>
 
 </section>
 
+
+<!-- HOME PAGE -->
+
 <section id="homePage">
 
   <header>
     <div class="top-logo">EWO.</div>
-    <button class="logout" id="logout">LOG OUT</button>
+
+    <button class="logout" id="logout">
+      LOG OUT
+    </button>
   </header>
 
   <div class="scene">
@@ -353,6 +417,27 @@ header {
 
 </section>
 
+
+<!-- LOVE QUOTE NOTIFICATION -->
+
+<div id="quoteNotification" role="status" aria-live="polite">
+
+  <div class="notification-title">
+    A PRIVATE MESSAGE 🥀
+  </div>
+
+  <p class="notification-quote">
+    "Even if I die, I will always love that heart with all mine.
+    When I'm no longer around, please keep living happily. 🥀"
+  </p>
+
+  <button class="notification-close" id="closeNotification">
+    CLOSE
+  </button>
+
+</div>
+
+
 <script>
 
 const PASSWORD = "19971128";
@@ -362,18 +447,29 @@ const homePage = document.getElementById("homePage");
 const password = document.getElementById("password");
 const error = document.getElementById("error");
 
+const notification =
+document.getElementById("quoteNotification");
+
+// LOGIN AND AUTO UNLOCK
+
 document.getElementById("loginForm")
 .addEventListener("submit", function(e) {
 
   e.preventDefault();
 
-  if(password.value === PASSWORD) {
+  if (password.value === PASSWORD) {
 
     loginPage.style.display = "none";
     homePage.style.display = "block";
 
     password.value = "";
     error.textContent = "";
+
+    // SHOW LOVE QUOTE NOTIFICATION
+
+    setTimeout(function() {
+      notification.classList.add("show");
+    }, 500);
 
   } else {
 
@@ -384,21 +480,43 @@ document.getElementById("loginForm")
 
 });
 
+
+// SHOW / HIDE PASSWORD
+
 document.getElementById("toggle")
 .addEventListener("click", function() {
 
-  if(password.type === "password") {
+  if (password.type === "password") {
+
     password.type = "text";
     this.textContent = "HIDE";
+
   } else {
+
     password.type = "password";
     this.textContent = "SHOW";
+
   }
 
 });
 
+
+// CLOSE NOTIFICATION
+
+document.getElementById("closeNotification")
+.addEventListener("click", function() {
+
+  notification.classList.remove("show");
+
+});
+
+
+// LOG OUT
+
 document.getElementById("logout")
 .addEventListener("click", function() {
+
+  notification.classList.remove("show");
 
   homePage.style.display = "none";
   loginPage.style.display = "flex";
@@ -409,4 +527,3 @@ document.getElementById("logout")
 
 </body>
 </html>
-
