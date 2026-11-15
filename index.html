@@ -1,1 +1,411 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<title>EWO | Private Space</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+}
+
+/* LOGIN */
+
+#loginPage {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background: #000;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+}
+
+.logo {
+  color: #d6b86a;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 12px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: #777;
+  margin-bottom: 60px;
+}
+
+h2 {
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 11px;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.password-wrap {
+  position: relative;
+}
+
+input {
+  width: 100%;
+  height: 53px;
+  background: #080808;
+  border: 1px solid #292929;
+  border-radius: 5px;
+  color: white;
+  outline: none;
+  padding: 0 65px 0 18px;
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+input:focus {
+  border-color: #c9a84c;
+  box-shadow: 0 0 15px #c9a84c22;
+}
+
+input::placeholder {
+  color: #555;
+  font-size: 11px;
+}
+
+.toggle {
+  position: absolute;
+  right: 16px;
+  top: 19px;
+  color: #aaa;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.login-btn {
+  width: 100%;
+  height: 50px;
+  margin-top: 18px;
+  background: #c9a84c;
+  border: 1px solid #c9a84c;
+  color: #000;
+  border-radius: 5px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  cursor: pointer;
+}
+
+.login-btn:active {
+  background: transparent;
+  color: #d6b86a;
+}
+
+#error {
+  min-height: 18px;
+  color: #ff5555;
+  font-size: 11px;
+  margin-top: 16px;
+}
+
+.footer {
+  color: #444;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 60px;
+}
+
+/* HOME */
+
+#homePage {
+  display: none;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 15%,
+  #1a2434, #080d16 50%, #000);
+}
+
+header {
+  height: 75px;
+  padding: 0 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-logo {
+  color: #d6b86a;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.logout {
+  padding: 10px 17px;
+  background: transparent;
+  border: 1px solid #555;
+  color: #aaa;
+  font-size: 9px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.scene {
+  height: calc(100vh - 75px);
+  min-height: 550px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+  radial-gradient(white 1px, transparent 1px);
+  background-size: 75px 85px;
+  opacity: .35;
+}
+
+.moon {
+  position: absolute;
+  width: 175px;
+  height: 175px;
+  top: 13%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%,
+  #fff, #eee 55%, #c8c8c8);
+  box-shadow: 0 0 40px #fff5, 0 0 100px #fff2;
+}
+
+.hill {
+  position: absolute;
+  bottom: -100px;
+  width: 130%;
+  height: 270px;
+  background: #101820;
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-4deg);
+}
+
+.hill2 {
+  position: absolute;
+  bottom: -120px;
+  width: 120%;
+  height: 200px;
+  background: #020405;
+  border-radius: 50% 50% 0 0;
+}
+
+.person {
+  position: absolute;
+  bottom: 115px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.head {
+  width: 23px;
+  height: 23px;
+  background: #020304;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.body {
+  width: 52px;
+  height: 65px;
+  background: #020304;
+  border-radius: 50% 50% 5px 5px;
+}
+
+.welcome {
+  position: absolute;
+  z-index: 3;
+  text-align: center;
+  top: 63%;
+  width: 100%;
+  padding: 10px;
+}
+
+.welcome h1 {
+  font-size: clamp(22px, 6vw, 42px);
+  font-weight: 300;
+  letter-spacing: 7px;
+}
+
+.welcome p {
+  margin-top: 15px;
+  color: #aaa;
+  font-size: 9px;
+  letter-spacing: 4px;
+}
+
+@media(max-width:480px) {
+  .moon {
+    width: 145px;
+    height: 145px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section id="loginPage">
+
+  <div class="login-box">
+
+    <div class="logo">EWO</div>
+    <div class="subtitle">PRIVATE SPACE</div>
+
+    <h2>Welcome Back</h2>
+
+    <p class="description">
+      Enter your password to continue
+    </p>
+
+    <form id="loginForm">
+
+      <div class="password-wrap">
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          required
+        >
+
+        <span class="toggle" id="toggle">
+          SHOW
+        </span>
+
+      </div>
+
+      <button class="login-btn" type="submit">
+        UNLOCK
+      </button>
+
+      <div id="error"></div>
+
+    </form>
+
+    <div class="footer">
+      EWO PRIVATE ACCESS · 2026
+    </div>
+
+  </div>
+
+</section>
+
+<section id="homePage">
+
+  <header>
+    <div class="top-logo">EWO.</div>
+    <button class="logout" id="logout">LOG OUT</button>
+  </header>
+
+  <div class="scene">
+
+    <div class="stars"></div>
+    <div class="moon"></div>
+
+    <div class="hill"></div>
+    <div class="hill2"></div>
+
+    <div class="person">
+      <div class="head"></div>
+      <div class="body"></div>
+    </div>
+
+    <div class="welcome">
+      <h1>WELCOME TO EWO</h1>
+      <p>YOUR OWN PRIVATE WORLD</p>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+
+const PASSWORD = "19971128";
+
+const loginPage = document.getElementById("loginPage");
+const homePage = document.getElementById("homePage");
+const password = document.getElementById("password");
+const error = document.getElementById("error");
+
+document.getElementById("loginForm")
+.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  if(password.value === PASSWORD) {
+
+    loginPage.style.display = "none";
+    homePage.style.display = "block";
+
+    password.value = "";
+    error.textContent = "";
+
+  } else {
+
+    error.textContent = "Incorrect password. Try again.";
+    password.value = "";
+
+  }
+
+});
+
+document.getElementById("toggle")
+.addEventListener("click", function() {
+
+  if(password.type === "password") {
+    password.type = "text";
+    this.textContent = "HIDE";
+  } else {
+    password.type = "password";
+    this.textContent = "SHOW";
+  }
+
+});
+
+document.getElementById("logout")
+.addEventListener("click", function() {
+
+  homePage.style.display = "none";
+  loginPage.style.display = "flex";
+
+});
+
+</script>
+
+</body>
+</html>
+
