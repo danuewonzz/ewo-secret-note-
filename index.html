@@ -240,11 +240,47 @@ header {
   letter-spacing: 4px;
 }
 
-/* NOTES SECTION */
+/* NEXT BUTTON */
+
+.next-area {
+  background: #050505;
+  padding: 25px 22px 40px;
+  text-align: center;
+}
+
+.next-button {
+  width: 100%;
+  max-width: 450px;
+  height: 52px;
+  background: transparent;
+  border: 1px solid #c9a84c;
+  border-radius: 5px;
+  color: #d6b86a;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: .2s;
+}
+
+.next-button:active {
+  background: #17130b;
+}
+
+/* NOTES PAGE */
+
+#notesPage {
+  display: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #000;
+}
 
 .notes-section {
   padding: 35px 22px 50px;
   background: #050505;
+  min-height: calc(100vh - 75px);
 }
 
 .notes-heading {
@@ -463,7 +499,7 @@ header {
 </section>
 
 
-<!-- HOME PAGE -->
+<!-- SECOND PAGE -->
 
 <section id="homePage">
 
@@ -489,28 +525,49 @@ header {
 
   </div>
 
-  <!-- NOTES SECTION -->
+  <div class="next-area">
 
-  <section class="notes-section">
+    <button class="next-button" id="nextButton">
+      NEXT →
 
-    <h3 class="notes-heading">MY PRIVATE NOTES</h3>
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- NOTES PAGE -->
+
+<section id="notesPage">
+
+  <header>
+
+    <div class="top-logo">EWO.</div>
+
+    <button class="logout" id="backButton">
+      BACK
+    </button>
+
+  </header>
+
+  <div class="notes-section">
+
+    <h3 class="notes-heading">
+      MY PRIVATE NOTES
+    </h3>
 
     <p class="notes-subtitle">
       YOUR MEMORIES • YOUR WORDS
     </p>
 
-    <div class="notes-list" id="notesList">
-    </div>
-
-    <!-- NOTE CONTENT -->
+    <div class="notes-list" id="notesList"></div>
 
     <div id="noteViewer">
 
-      <h3 id="noteTitle">NOTE 1</h3>
+      <h3 id="noteTitle"></h3>
 
-      <div id="noteContent">
-        Loading...
-      </div>
+      <div id="noteContent"></div>
 
       <button class="note-close" id="closeNote">
         CLOSE NOTE
@@ -518,7 +575,7 @@ header {
 
     </div>
 
-  </section>
+  </div>
 
 </section>
 
@@ -549,6 +606,8 @@ const PASSWORD = "19971128";
 
 const loginPage = document.getElementById("loginPage");
 const homePage = document.getElementById("homePage");
+const notesPage = document.getElementById("notesPage");
+
 const password = document.getElementById("password");
 const error = document.getElementById("error");
 
@@ -567,6 +626,7 @@ document.getElementById("loginForm")
 
     loginPage.style.display = "none";
     homePage.style.display = "block";
+    notesPage.style.display = "none";
 
     password.value = "";
     error.textContent = "";
@@ -615,6 +675,34 @@ document.getElementById("closeNotification")
 });
 
 
+// NEXT BUTTON
+
+document.getElementById("nextButton")
+.addEventListener("click", function() {
+
+  homePage.style.display = "none";
+  notesPage.style.display = "block";
+
+  window.scrollTo(0, 0);
+
+});
+
+
+// BACK BUTTON
+
+document.getElementById("backButton")
+.addEventListener("click", function() {
+
+  closeNote();
+
+  notesPage.style.display = "none";
+  homePage.style.display = "block";
+
+  window.scrollTo(0, 0);
+
+});
+
+
 // LOG OUT
 
 document.getElementById("logout")
@@ -624,8 +712,11 @@ document.getElementById("logout")
 
   closeNote();
 
+  notesPage.style.display = "none";
   homePage.style.display = "none";
   loginPage.style.display = "flex";
+
+  window.scrollTo(0, 0);
 
 });
 
@@ -640,8 +731,12 @@ for (let i = 1; i <= 10; i++) {
 
   button.className = "note-button";
 
-  button.innerHTML =
-    "NOTE " + i + ' <span>›</span>';
+  button.textContent = "NOTE " + i;
+
+  const arrow = document.createElement("span");
+  arrow.textContent = "›";
+
+  button.appendChild(arrow);
 
   button.addEventListener("click", function() {
     openGitNote(i);
