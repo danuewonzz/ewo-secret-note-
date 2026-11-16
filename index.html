@@ -3,8 +3,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
 <meta name="theme-color" content="#000000">
+
 <title>EWO | Private Space</title>
 
 <style>
@@ -187,7 +191,7 @@ header {
   touch-action: manipulation;
 }
 
-/* BACKGROUND IMAGE */
+/* SECOND PAGE BACKGROUND IMAGE */
 
 .scene {
   height: calc(100vh - 75px);
@@ -236,134 +240,113 @@ header {
   letter-spacing: 4px;
 }
 
-/* PRIVATE FILE MANAGER */
+/* NOTES SECTION */
 
-.private-files {
-  padding: 35px 7% 55px;
+.notes-section {
+  padding: 35px 22px 50px;
   background: #050505;
-  min-height: 350px;
 }
 
-.files-heading {
+.notes-heading {
   color: #d6b86a;
   font-size: 13px;
-  letter-spacing: 3px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.files-subtitle {
+.notes-subtitle {
   color: #666;
   font-size: 9px;
-  letter-spacing: 1px;
-  margin-bottom: 22px;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 25px;
 }
 
-.file-toolbar {
+.notes-list {
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.note-button {
+  width: 100%;
+  min-height: 53px;
+  background: #0b0b0b;
+  border: 1px solid #302719;
+  border-radius: 5px;
+  color: #d6b86a;
+  text-align: left;
+  padding: 0 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .2s;
+  touch-action: manipulation;
+}
+
+.note-button:active {
+  background: #17130b;
+  border-color: #c9a84c;
+}
+
+.note-button span {
+  float: right;
+  color: #777;
+  font-size: 17px;
+}
+
+/* NOTE VIEWER */
+
+#noteViewer {
+  display: none;
+  width: 100%;
+  max-width: 450px;
+  margin: 25px auto 0;
+  padding: 22px 18px;
+  background: #0a0a0a;
+  border: 1px solid #c9a84c;
+  border-radius: 7px;
+}
+
+#noteTitle {
+  color: #d6b86a;
+  font-size: 12px;
+  letter-spacing: 3px;
   margin-bottom: 20px;
 }
 
-.file-action {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(214,184,106,0.35);
+#noteContent {
+  color: #ddd;
+  font-size: 12px;
+  line-height: 2;
+  font-weight: 300;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  min-height: 50px;
+}
+
+.note-close {
+  width: 100%;
+  height: 42px;
+  margin-top: 25px;
+  background: transparent;
+  border: 1px solid #8d7136;
+  border-radius: 4px;
   color: #d6b86a;
-  border-radius: 5px;
-  padding: 10px 12px;
-  font-family: inherit;
+  font-family: 'Montserrat', sans-serif;
   font-size: 9px;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
   cursor: pointer;
   touch-action: manipulation;
 }
 
-.file-action:active {
-  background: rgba(214,184,106,0.15);
-}
-
-.file-path {
-  color: #777;
-  font-size: 10px;
-  margin-bottom: 12px;
-  letter-spacing: 1px;
-}
-
-.file-path span {
-  color: #d6b86a;
-}
-
-.file-list {
-  border-top: 1px solid #252525;
-}
-
-.file-row {
-  min-height: 65px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 5px;
-  border-bottom: 1px solid #222;
-  cursor: pointer;
-}
-
-.file-row:active {
-  background: rgba(255,255,255,0.035);
-}
-
-.file-icon {
-  width: 34px;
-  text-align: center;
-  font-size: 23px;
-  color: #d6b86a;
-  flex-shrink: 0;
-}
-
-.file-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.file-name {
-  color: #ddd;
-  font-size: 11px;
-  font-weight: 500;
-  overflow-wrap: anywhere;
-}
-
-.file-type {
-  color: #666;
-  font-size: 9px;
-  margin-top: 5px;
-}
-
-.file-more {
-  color: #777;
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  padding: 8px;
-  cursor: pointer;
-}
-
-.empty-files {
-  color: #666;
-  font-size: 10px;
-  text-align: center;
-  padding: 35px 10px;
-  letter-spacing: 1px;
-}
-
-.back-row {
-  color: #d6b86a;
-  font-size: 10px;
-  padding: 12px 4px;
-  cursor: pointer;
-  border-bottom: 1px solid #222;
-}
-
-/* NOTIFICATION */
+/* LOVE QUOTE NOTIFICATION */
 
 #quoteNotification {
   position: fixed;
@@ -432,14 +415,23 @@ header {
 <!-- LOGIN PAGE -->
 
 <section id="loginPage">
+
   <div class="login-box">
+
     <div class="logo">EWO</div>
+
     <div class="subtitle">PRIVATE SPACE</div>
+
     <h2>Welcome Back</h2>
-    <p class="description">Enter your password to continue</p>
+
+    <p class="description">
+      Enter your password to continue
+    </p>
 
     <form id="loginForm">
+
       <div class="password-wrap">
+
         <input
           type="password"
           id="password"
@@ -447,15 +439,27 @@ header {
           autocomplete="current-password"
           required
         >
-        <span class="toggle" id="toggle">SHOW</span>
+
+        <span class="toggle" id="toggle">
+          SHOW
+        </span>
+
       </div>
 
-      <button class="login-btn" type="submit">UNLOCK</button>
+      <button class="login-btn" type="submit">
+        UNLOCK
+      </button>
+
       <div id="error"></div>
+
     </form>
 
-    <div class="footer">DANU EWONZ • 2026</div>
+    <div class="footer">
+      DANU EWONZ • 2026
+    </div>
+
   </div>
+
 </section>
 
 
@@ -464,38 +468,54 @@ header {
 <section id="homePage">
 
   <header>
+
     <div class="top-logo">EWO.</div>
-    <button class="logout" id="logout">LOG OUT</button>
+
+    <button class="logout" id="logout">
+      LOG OUT
+    </button>
+
   </header>
 
   <div class="scene">
+
     <div class="welcome">
+
       <h1>WELCOME TO EWO</h1>
+
       <p>YOUR OWN PRIVATE WORLD</p>
+
     </div>
+
   </div>
 
-  <!-- PRIVATE FILE MANAGER -->
+  <!-- NOTES SECTION -->
 
-  <section class="private-files">
+  <section class="notes-section">
 
-    <div class="files-heading">EWO PRIVATE FILES</div>
-    <div class="files-subtitle">YOUR PERSONAL FILE COLLECTION</div>
+    <h3 class="notes-heading">MY PRIVATE NOTES</h3>
 
-    <div class="file-toolbar">
-      <button class="file-action" id="newFolderBtn">＋ NEW FOLDER</button>
-      <button class="file-action" id="addPhotoBtn">＋ ADD PHOTO</button>
-      <button class="file-action" id="addNoteBtn">＋ ADD NOTE</button>
+    <p class="notes-subtitle">
+      YOUR MEMORIES • YOUR WORDS
+    </p>
+
+    <div class="notes-list" id="notesList">
     </div>
 
-    <input type="file" id="photoInput" accept="image/*" hidden>
+    <!-- NOTE CONTENT -->
 
-    <div class="file-path" id="filePath">
-      LOCATION: <span>HOME</span>
-    </div>
+    <div id="noteViewer">
 
-    <div class="file-list" id="fileList">
-      <div class="empty-files">LOADING FILES...</div>
+      <h3 id="noteTitle">NOTE 1</h3>
+
+      <div id="noteContent">
+        Loading...
+      </div>
+
+      <button class="note-close" id="closeNote">
+        CLOSE NOTE
+      </button>
+
     </div>
 
   </section>
@@ -506,12 +526,20 @@ header {
 <!-- LOVE QUOTE NOTIFICATION -->
 
 <div id="quoteNotification" role="status" aria-live="polite">
-  <div class="notification-title">A PRIVATE MESSAGE 🥀</div>
+
+  <div class="notification-title">
+    A PRIVATE MESSAGE 🥀
+  </div>
+
   <p class="notification-quote">
     "Even if I die, I will always love that heart with all mine.
     When I'm no longer around, please keep living happily. 🥀"
   </p>
-  <button class="notification-close" id="closeNotification">CLOSE</button>
+
+  <button class="notification-close" id="closeNotification">
+    CLOSE
+  </button>
+
 </div>
 
 
@@ -523,7 +551,9 @@ const loginPage = document.getElementById("loginPage");
 const homePage = document.getElementById("homePage");
 const password = document.getElementById("password");
 const error = document.getElementById("error");
-const notification = document.getElementById("quoteNotification");
+
+const notification =
+document.getElementById("quoteNotification");
 
 
 // LOGIN
@@ -540,8 +570,6 @@ document.getElementById("loginForm")
 
     password.value = "";
     error.textContent = "";
-
-    loadFiles();
 
     setTimeout(function() {
       notification.classList.add("show");
@@ -563,11 +591,15 @@ document.getElementById("toggle")
 .addEventListener("click", function() {
 
   if (password.type === "password") {
+
     password.type = "text";
     this.textContent = "HIDE";
+
   } else {
+
     password.type = "password";
     this.textContent = "SHOW";
+
   }
 
 });
@@ -577,7 +609,9 @@ document.getElementById("toggle")
 
 document.getElementById("closeNotification")
 .addEventListener("click", function() {
+
   notification.classList.remove("show");
+
 });
 
 
@@ -587,487 +621,96 @@ document.getElementById("logout")
 .addEventListener("click", function() {
 
   notification.classList.remove("show");
+
+  closeNote();
+
   homePage.style.display = "none";
   loginPage.style.display = "flex";
 
 });
 
 
-// ==================================
-// EWO PRIVATE FILE MANAGER
-// ==================================
+// CREATE NOTE BUTTONS 1 - 10
 
-let db;
-let currentFolderId = null;
+const notesList = document.getElementById("notesList");
 
-const DB_NAME = "EWOPRIVATEFILES";
-const DB_VERSION = 1;
+for (let i = 1; i <= 10; i++) {
 
+  const button = document.createElement("button");
 
-// OPEN DATABASE
+  button.className = "note-button";
 
-function openDatabase() {
+  button.innerHTML =
+    "NOTE " + i + ' <span>›</span>';
 
-  return new Promise((resolve, reject) => {
-
-    const request = indexedDB.open(DB_NAME, DB_VERSION);
-
-    request.onupgradeneeded = function(e) {
-
-      const database = e.target.result;
-
-      if (!database.objectStoreNames.contains("files")) {
-        database.createObjectStore("files", {
-          keyPath: "id",
-          autoIncrement: true
-        });
-      }
-
-    };
-
-    request.onsuccess = function(e) {
-      db = e.target.result;
-      resolve(db);
-    };
-
-    request.onerror = function() {
-      reject(request.error);
-    };
-
+  button.addEventListener("click", function() {
+    openGitNote(i);
   });
 
+  notesList.appendChild(button);
+
 }
 
 
-// DATABASE REQUEST
+// OPEN GITHUB TEXT FILE
 
-function databaseAction(mode, action) {
+async function openGitNote(number) {
 
-  return new Promise((resolve, reject) => {
+  const viewer = document.getElementById("noteViewer");
+  const title = document.getElementById("noteTitle");
+  const content = document.getElementById("noteContent");
 
-    const transaction = db.transaction(["files"], mode);
-    const store = transaction.objectStore("files");
+  viewer.style.display = "block";
 
-    let request = action(store);
+  title.textContent = "NOTE " + number;
+  content.textContent = "Loading note...";
 
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-
+  viewer.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
   });
-
-}
-
-
-// ADD DEFAULT FOLDERS
-
-async function createDefaultFolders() {
-
-  const files = await databaseAction("readonly", store => store.getAll());
-
-  if (!files.some(file => file.name === "Secret Photos" && file.type === "folder" && file.parentId === null)) {
-
-    await databaseAction("readwrite", store => store.add({
-      name: "Secret Photos",
-      type: "folder",
-      parentId: null,
-      createdAt: Date.now()
-    }));
-
-  }
-
-  if (!files.some(file => file.name === "Secret Notes" && file.type === "folder" && file.parentId === null)) {
-
-    await databaseAction("readwrite", store => store.add({
-      name: "Secret Notes",
-      type: "folder",
-      parentId: null,
-      createdAt: Date.now()
-    }));
-
-  }
-
-}
-
-
-// LOAD FILES
-
-async function loadFiles() {
 
   try {
 
-    await openDatabase();
-    await createDefaultFolders();
-    await renderFiles();
+    const fileName = encodeURIComponent("Note " + number + ".txt");
 
-  } catch (err) {
+    const response = await fetch(
+      "NOTES/" + fileName + "?v=" + Date.now()
+    );
 
-    document.getElementById("fileList").innerHTML =
-      '<div class="empty-files">STORAGE COULD NOT BE OPENED</div>';
-
-    console.error(err);
-
-  }
-
-}
-
-
-// RENDER FILE LIST
-
-async function renderFiles() {
-
-  const allFiles = await databaseAction("readonly", store => store.getAll());
-
-  const list = document.getElementById("fileList");
-  const path = document.getElementById("filePath");
-
-  list.innerHTML = "";
-
-  if (currentFolderId !== null) {
-
-    const back = document.createElement("div");
-    back.className = "back-row";
-    back.textContent = "← BACK TO PREVIOUS FOLDER";
-
-    back.onclick = async function() {
-
-      const current = allFiles.find(f => f.id === currentFolderId);
-      currentFolderId = current ? current.parentId : null;
-
-      await renderFiles();
-
-    };
-
-    list.appendChild(back);
-
-    const folder = allFiles.find(f => f.id === currentFolderId);
-
-    path.innerHTML = 'LOCATION: <span>' +
-      escapeHTML(folder ? folder.name : "FOLDER") + '</span>';
-
-  } else {
-
-    path.innerHTML = 'LOCATION: <span>HOME</span>';
-
-  }
-
-  const visibleFiles = allFiles.filter(file =>
-    file.parentId === currentFolderId
-  );
-
-  if (visibleFiles.length === 0) {
-
-    const empty = document.createElement("div");
-    empty.className = "empty-files";
-    empty.textContent = "THIS FOLDER IS EMPTY";
-    list.appendChild(empty);
-
-    return;
-
-  }
-
-  visibleFiles.sort((a, b) => {
-
-    if (a.type === "folder" && b.type !== "folder") return -1;
-    if (a.type !== "folder" && b.type === "folder") return 1;
-
-    return b.createdAt - a.createdAt;
-
-  });
-
-  visibleFiles.forEach(file => {
-
-    const row = document.createElement("div");
-    row.className = "file-row";
-
-    const icon = document.createElement("div");
-    icon.className = "file-icon";
-
-    if (file.type === "folder") icon.textContent = "📁";
-    else if (file.type === "photo") icon.textContent = "🖼️";
-    else icon.textContent = "📄";
-
-    const info = document.createElement("div");
-    info.className = "file-info";
-
-    const name = document.createElement("div");
-    name.className = "file-name";
-    name.textContent = file.name;
-
-    const type = document.createElement("div");
-    type.className = "file-type";
-
-    if (file.type === "folder") type.textContent = "Folder";
-    else if (file.type === "photo") type.textContent = "Image File";
-    else type.textContent = "Private Note";
-
-    info.appendChild(name);
-    info.appendChild(type);
-
-    const more = document.createElement("button");
-    more.className = "file-more";
-    more.textContent = "⋮";
-    more.setAttribute("aria-label", "File options");
-
-    more.onclick = async function(e) {
-
-      e.stopPropagation();
-
-      const action = prompt(
-        "Type DELETE to remove this item:"
-      );
-
-      if (action && action.trim().toUpperCase() === "DELETE") {
-
-        await deleteFile(file.id);
-        await renderFiles();
-
-      }
-
-    };
-
-    row.appendChild(icon);
-    row.appendChild(info);
-    row.appendChild(more);
-
-    row.onclick = async function() {
-
-      if (file.type === "folder") {
-
-        currentFolderId = file.id;
-        await renderFiles();
-
-      } else if (file.type === "note") {
-
-        openNote(file);
-
-      } else if (file.type === "photo") {
-
-        openPhoto(file);
-
-      }
-
-    };
-
-    list.appendChild(row);
-
-  });
-
-}
-
-
-// ESCAPE HTML
-
-function escapeHTML(value) {
-
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;"
-  })[char]);
-
-}
-
-
-// CREATE FOLDER
-
-document.getElementById("newFolderBtn")
-.addEventListener("click", async function() {
-
-  if (!db) return;
-
-  const name = prompt("Enter your new folder name:");
-
-  if (!name || !name.trim()) return;
-
-  await databaseAction("readwrite", store => store.add({
-
-    name: name.trim(),
-    type: "folder",
-    parentId: currentFolderId,
-    createdAt: Date.now()
-
-  }));
-
-  await renderFiles();
-
-});
-
-
-// ADD PHOTO
-
-document.getElementById("addPhotoBtn")
-.addEventListener("click", function() {
-
-  document.getElementById("photoInput").click();
-
-});
-
-
-document.getElementById("photoInput")
-.addEventListener("change", async function() {
-
-  const file = this.files[0];
-
-  if (!file) return;
-
-  if (!file.type.startsWith("image/")) {
-    alert("Please select an image file.");
-    this.value = "";
-    return;
-  }
-
-  try {
-
-    await databaseAction("readwrite", store => store.add({
-
-      name: file.name,
-      type: "photo",
-      parentId: currentFolderId,
-      data: file,
-      createdAt: Date.now()
-
-    }));
-
-    await renderFiles();
-
-  } catch (err) {
-
-    alert("Could not save this photo. Storage may be full.");
-    console.error(err);
-
-  }
-
-  this.value = "";
-
-});
-
-
-// ADD NOTE
-
-document.getElementById("addNoteBtn")
-.addEventListener("click", async function() {
-
-  if (!db) return;
-
-  const title = prompt("Enter note title:");
-
-  if (!title || !title.trim()) return;
-
-  const content = prompt("Write your private note:");
-
-  if (content === null) return;
-
-  await databaseAction("readwrite", store => store.add({
-
-    name: title.trim(),
-    type: "note",
-    content: content,
-    parentId: currentFolderId,
-    createdAt: Date.now()
-
-  }));
-
-  await renderFiles();
-
-});
-
-
-// OPEN NOTE
-
-async function openNote(file) {
-
-  const choice = prompt(
-    file.name + "\n\n" +
-    file.content +
-    "\n\nType EDIT to edit or DELETE to delete:"
-  );
-
-  if (choice && choice.toUpperCase() === "EDIT") {
-
-    const updated = prompt("Edit your note:", file.content);
-
-    if (updated !== null) {
-
-      file.content = updated;
-
-      await databaseAction("readwrite", store => store.put(file));
-
-      await renderFiles();
-
+    if (!response.ok) {
+      throw new Error("Note file not found.");
     }
 
-  } else if (choice && choice.toUpperCase() === "DELETE") {
+    const text = await response.text();
 
-    await deleteFile(file.id);
-    await renderFiles();
+    content.textContent = text || "This note is empty.";
 
-  }
+  } catch (err) {
 
-}
-
-
-// OPEN PHOTO
-
-function openPhoto(file) {
-
-  const url = URL.createObjectURL(file.data);
-
-  const win = window.open("", "_blank");
-
-  if (win) {
-
-    win.document.write(`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>${escapeHTML(file.name)}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-          body {
-            margin:0;
-            background:#000;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            min-height:100vh;
-          }
-          img {
-            max-width:100%;
-            max-height:100vh;
-            object-fit:contain;
-          }
-        </style>
-      </head>
-      <body>
-        <img src="${url}" alt="Private photo">
-      </body>
-      </html>
-    `);
-
-    win.document.close();
-
-  } else {
-
-    URL.revokeObjectURL(url);
-    alert("Please allow pop-ups to view this photo.");
+    content.textContent =
+      "Unable to load this note.\n\n" +
+      "Please check the GitHub NOTES folder and file name.\n\n" +
+      "File required: Note " + number + ".txt";
 
   }
 
 }
 
 
-// DELETE FILE
+// CLOSE NOTE
 
-async function deleteFile(id) {
+function closeNote() {
 
-  await databaseAction("readwrite", store => store.delete(id));
+  document.getElementById("noteViewer").style.display = "none";
 
 }
 
+document.getElementById("closeNote")
+.addEventListener("click", closeNote);
 
-// DISABLE PINCH ZOOM
+
+// DISABLE PINCH ZOOM ON SUPPORTED BROWSERS
 
 document.addEventListener("gesturestart", function(e) {
   e.preventDefault();
