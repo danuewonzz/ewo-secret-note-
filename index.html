@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 <title>EWO | Private Space</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,7 +45,6 @@ html, body {
     display: block;
 }
 
-/* NIGHT SKY BACKGROUND */
 .scene {
     position: absolute;
     inset: 0;
@@ -58,7 +56,7 @@ html, body {
     background-repeat: no-repeat;
 }
 
-/* LOGIN PAGE */
+/* LOGIN */
 #loginPage {
     display: none;
     align-items: center;
@@ -114,7 +112,6 @@ html, body {
 
 .password-input::placeholder {
     color: #888;
-    letter-spacing: 2px;
 }
 
 .login-btn {
@@ -129,7 +126,6 @@ html, body {
     font-weight: 800;
     letter-spacing: 3px;
     font-family: inherit;
-    cursor: pointer;
 }
 
 .login-error {
@@ -150,11 +146,7 @@ html, body {
     letter-spacing: 2px;
 }
 
-/* SECOND PAGE */
-#homePage {
-    background: #000;
-}
-
+/* HEADER */
 .topbar {
     position: absolute;
     z-index: 5;
@@ -178,7 +170,7 @@ html, body {
     letter-spacing: 4px;
 }
 
-.logout-btn, .back-btn {
+.header-btn {
     color: #ff5555;
     border: 1px solid rgba(255,75,75,.65);
     background: rgba(0,0,0,.45);
@@ -188,7 +180,11 @@ html, body {
     font-family: inherit;
     font-weight: 700;
     letter-spacing: 1px;
-    cursor: pointer;
+}
+
+/* SECOND PAGE */
+#homePage {
+    background: #000;
 }
 
 .home-background {
@@ -196,14 +192,9 @@ html, body {
     inset: 65px 0 0;
 }
 
-/* THIRD PAGE */
-#notesPage {
-    background: #000;
-}
-
-.notes-content {
+/* ALL CONTENT PAGES */
+.content-area {
     position: absolute;
-    z-index: 2;
     top: 65px;
     bottom: 0;
     left: 0;
@@ -213,11 +204,11 @@ html, body {
     scrollbar-width: none;
 }
 
-.notes-content::-webkit-scrollbar {
+.content-area::-webkit-scrollbar {
     display: none;
 }
 
-/* WELCOME TEXT */
+/* MAIN PAGE WELCOME */
 .welcome-section {
     text-align: center;
     padding: 28px 10px 25px;
@@ -231,7 +222,6 @@ html, body {
     font-weight: 800;
     letter-spacing: 3px;
     margin-bottom: 12px;
-    text-shadow: 0 0 15px rgba(214,173,69,.25);
 }
 
 .welcome-subtitle {
@@ -252,30 +242,23 @@ html, body {
     min-height: 65px;
     border: 1px solid rgba(214,173,69,.65);
     border-radius: 10px;
-    background: rgba(15,15,15,.95);
+    background: #0e0e0e;
     color: var(--gold-light);
     font-family: inherit;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 3px;
     cursor: pointer;
-    transition: .2s;
-}
-
-.main-btn:active {
-    background: rgba(214,173,69,.15);
-    transform: scale(.98);
 }
 
 /* SUB BUTTONS */
-.note-list {
+.item-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 15px;
 }
 
-.note-btn {
+.item-btn {
     width: 100%;
     min-height: 55px;
     border: 1px solid rgba(214,173,69,.55);
@@ -291,14 +274,9 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    cursor: pointer;
 }
 
-.note-btn:active {
-    background: rgba(214,173,69,.15);
-}
-
-.note-arrow {
+.item-arrow {
     color: #aaa;
     font-size: 18px;
 }
@@ -308,7 +286,6 @@ html, body {
     display: none;
     margin-top: 20px;
     padding: 20px;
-    min-height: 130px;
     border: 1px solid rgba(214,173,69,.55);
     border-radius: 10px;
     background: #0b0b0b;
@@ -334,16 +311,11 @@ html, body {
     user-select: text;
 }
 
-/* IMAGE GALLERY */
+/* IMAGE GRID */
 .image-gallery {
-    display: none;
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
-    margin-top: 15px;
-}
-
-.image-gallery.show {
-    display: grid;
 }
 
 .gallery-item {
@@ -354,7 +326,6 @@ html, body {
     border: 1px solid rgba(214,173,69,.65);
     border-radius: 10px;
     background: #111;
-    cursor: pointer;
 }
 
 .gallery-item img {
@@ -377,7 +348,7 @@ html, body {
     letter-spacing: 2px;
 }
 
-/* FULL SCREEN IMAGE PREVIEW */
+/* FULL IMAGE PREVIEW */
 .image-preview {
     display: none;
     position: fixed;
@@ -397,7 +368,6 @@ html, body {
     max-width: 100%;
     max-height: 85%;
     object-fit: contain;
-    border-radius: 5px;
 }
 
 .preview-close {
@@ -411,7 +381,6 @@ html, body {
     color: var(--gold-light);
     background: #111;
     font-size: 22px;
-    cursor: pointer;
 }
 
 /* NOTIFICATION */
@@ -480,14 +449,12 @@ html, body {
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 3px;
-    cursor: pointer;
 }
 
 @media (max-width: 360px) {
     .welcome-title {
         font-size: 23px;
     }
-
     .notification-message {
         font-size: 13px;
     }
@@ -497,7 +464,7 @@ html, body {
 
 <body>
 
-<!-- PAGE 1 : LOGIN -->
+<!-- PAGE 1: LOGIN -->
 <section id="loginPage" class="page active">
 
     <div class="scene"></div>
@@ -525,60 +492,45 @@ html, body {
 </section>
 
 
-<!-- PAGE 2 : HOME -->
+<!-- PAGE 2: HOME -->
 <section id="homePage" class="page">
 
     <div class="scene home-background"></div>
 
     <header class="topbar">
         <div class="top-logo">EWO.</div>
-        <button class="logout-btn" onclick="logout()">LOG OUT</button>
+        <button class="header-btn" onclick="logout()">LOG OUT</button>
     </header>
 
 </section>
 
 
-<!-- PAGE 3 : PRIVATE SPACE -->
-<section id="notesPage" class="page">
+<!-- PAGE 3: MAIN MENU -->
+<section id="mainPage" class="page">
 
     <header class="topbar">
         <div class="top-logo">EWO.</div>
-        <button class="back-btn" onclick="goBack()">← BACK</button>
+        <button class="header-btn" onclick="goHome()">← BACK</button>
     </header>
 
-    <main class="notes-content">
+    <main class="content-area">
 
         <div class="welcome-section">
             <div class="welcome-title">WELCOME TO EWO</div>
             <div class="welcome-subtitle">YOUR OWN PRIVATE WORLD</div>
         </div>
 
-        <!-- MAIN BUTTONS -->
-        <div class="main-menu" id="mainMenu">
+        <div class="main-menu">
 
-            <button class="main-btn" onclick="toggleNotes()">
+            <button class="main-btn" onclick="openPage('notesPage')">
                 NOTES
             </button>
 
-            <button class="main-btn" onclick="toggleImages()">
+            <button class="main-btn" onclick="openPage('imagesPage')">
                 ♡ IMAGE
             </button>
 
         </div>
-
-        <!-- NOTES 1 - 10 -->
-        <div id="noteButtonsPage" style="display:none;">
-            <div class="note-list" id="noteList"></div>
-        </div>
-
-        <!-- NOTE CONTENT -->
-        <div class="note-viewer" id="noteViewer">
-            <div class="note-heading" id="noteHeading"></div>
-            <div class="note-text" id="noteText"></div>
-        </div>
-
-        <!-- IMAGE GALLERY -->
-        <div class="image-gallery" id="imageGallery"></div>
 
         <div class="footer" style="position:relative; bottom:auto; margin-top:35px;">
             DANU EWONZ • 2026
@@ -588,7 +540,52 @@ html, body {
 </section>
 
 
-<!-- PRIVATE MESSAGE NOTIFICATION -->
+<!-- PAGE 4: NOTES -->
+<section id="notesPage" class="page">
+
+    <header class="topbar">
+        <div class="top-logo">EWO.</div>
+        <button class="header-btn" onclick="openPage('mainPage')">← BACK</button>
+    </header>
+
+    <main class="content-area">
+
+        <div class="section-heading" style="text-align:center;color:#f5d77b;letter-spacing:4px;margin-bottom:22px;">
+            PRIVATE NOTES
+        </div>
+
+        <div class="item-list" id="noteList"></div>
+
+        <div class="note-viewer" id="noteViewer">
+            <div class="note-heading" id="noteHeading"></div>
+            <div class="note-text" id="noteText"></div>
+        </div>
+
+    </main>
+</section>
+
+
+<!-- PAGE 5: IMAGES -->
+<section id="imagesPage" class="page">
+
+    <header class="topbar">
+        <div class="top-logo">EWO.</div>
+        <button class="header-btn" onclick="openPage('mainPage')">← BACK</button>
+    </header>
+
+    <main class="content-area">
+
+        <div style="text-align:center;color:#f5d77b;letter-spacing:4px;margin-bottom:22px;">
+            PRIVATE IMAGES
+        </div>
+
+        <div class="image-gallery" id="imageGallery"></div>
+
+    </main>
+</section>
+
+
+<!-- NOTIFICATION -->
 <div class="notification-overlay" id="quoteNotification">
 
     <div class="notification-box">
@@ -608,12 +605,10 @@ html, body {
 </div>
 
 
-<!-- FULL SCREEN IMAGE VIEW -->
+<!-- IMAGE PREVIEW -->
 <div class="image-preview" id="imagePreview">
 
-    <button class="preview-close" onclick="closeImagePreview()">
-        ×
-    </button>
+    <button class="preview-close" onclick="closeImagePreview()">×</button>
 
     <img id="previewImage" src="" alt="Private Image">
 
@@ -623,20 +618,20 @@ html, body {
 <script>
 const PASSWORD = "19971128";
 
-const loginPage = document.getElementById("loginPage");
-const homePage = document.getElementById("homePage");
-const notesPage = document.getElementById("notesPage");
-const notification = document.getElementById("quoteNotification");
+const pages = document.querySelectorAll(".page");
 
 let notificationOpened = false;
 
-/* PAGE CONTROL */
-function showPage(page) {
-    loginPage.classList.remove("active");
-    homePage.classList.remove("active");
-    notesPage.classList.remove("active");
+/* PAGE NAVIGATION */
+function openPage(pageId) {
 
-    page.classList.add("active");
+    pages.forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    closeImagePreview();
 }
 
 /* LOGIN */
@@ -653,17 +648,18 @@ function login() {
         error.textContent = "";
         document.getElementById("passwordInput").value = "";
 
-        resetPrivateSpace();
-        showPage(homePage);
+        resetAll();
+        openPage("homePage");
 
         notificationOpened = true;
 
         setTimeout(() => {
             if (
                 notificationOpened &&
-                homePage.classList.contains("active")
+                document.getElementById("homePage").classList.contains("active")
             ) {
-                notification.classList.add("show");
+                document.getElementById("quoteNotification")
+                    .classList.add("show");
             }
         }, 500);
 
@@ -675,79 +671,43 @@ function login() {
 /* ENTER KEY */
 document.getElementById("passwordInput")
 .addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        login();
-    }
+    if (event.key === "Enter") login();
 });
 
 /* CLOSE NOTIFICATION */
 function closeNotification() {
 
-    notification.classList.remove("show");
+    document.getElementById("quoteNotification")
+        .classList.remove("show");
+
     notificationOpened = false;
 
-    setTimeout(() => {
-        showPage(notesPage);
-    }, 350);
+    openPage("mainPage");
+}
+
+/* SECOND PAGE BACK */
+function goHome() {
+    openPage("homePage");
 }
 
 /* LOG OUT */
 function logout() {
 
-    notification.classList.remove("show");
     notificationOpened = false;
 
-    resetPrivateSpace();
-    showPage(loginPage);
-}
+    document.getElementById("quoteNotification")
+        .classList.remove("show");
 
-/* BACK */
-function goBack() {
-
-    resetPrivateSpace();
-    showPage(homePage);
+    resetAll();
+    openPage("loginPage");
 }
 
 /* RESET */
-function resetPrivateSpace() {
-
-    document.getElementById("noteButtonsPage").style.display = "none";
-
-    document.getElementById("imageGallery").classList.remove("show");
+function resetAll() {
 
     document.getElementById("noteViewer").classList.remove("show");
 
     closeImagePreview();
-}
-
-/* NOTES BUTTON */
-function toggleNotes() {
-
-    const notes = document.getElementById("noteButtonsPage");
-    const gallery = document.getElementById("imageGallery");
-
-    const opening = notes.style.display === "none";
-
-    notes.style.display = opening ? "block" : "none";
-
-    gallery.classList.remove("show");
-
-    document.getElementById("noteViewer").classList.remove("show");
-}
-
-/* IMAGE BUTTON */
-function toggleImages() {
-
-    const gallery = document.getElementById("imageGallery");
-    const notes = document.getElementById("noteButtonsPage");
-
-    const opening = !gallery.classList.contains("show");
-
-    gallery.classList.toggle("show", opening);
-
-    notes.style.display = "none";
-
-    document.getElementById("noteViewer").classList.remove("show");
 }
 
 /* CREATE NOTE BUTTONS */
@@ -757,11 +717,11 @@ for (let i = 1; i <= 10; i++) {
 
     const button = document.createElement("button");
 
-    button.className = "note-btn";
+    button.className = "item-btn";
 
     button.innerHTML = `
         <span>NOTE ${i}</span>
-        <span class="note-arrow">›</span>
+        <span class="item-arrow">›</span>
     `;
 
     button.addEventListener("click", function() {
@@ -771,7 +731,7 @@ for (let i = 1; i <= 10; i++) {
     noteList.appendChild(button);
 }
 
-/* LOAD GITHUB NOTES */
+/* LOAD GITHUB NOTE */
 async function openGitNote(number) {
 
     const viewer = document.getElementById("noteViewer");
@@ -784,7 +744,6 @@ async function openGitNote(number) {
     text.textContent = "Loading note...";
 
     const fileName = encodeURIComponent("Note " + number + ".txt");
-
     const noteURL = "NOTES/" + fileName + "?v=" + Date.now();
 
     try {
@@ -804,18 +763,17 @@ async function openGitNote(number) {
     } catch (error) {
 
         text.textContent =
-            "Unable to load this note.\n\n" +
-            "Please check: NOTES/Note " + number + ".txt";
+            "Unable to load Note " + number +
+            ".\n\nPlease check the GitHub NOTES folder.";
     }
 }
 
-/* CREATE IMAGE GALLERY */
+/* CREATE IMAGE BUTTONS */
 const imageGallery = document.getElementById("imageGallery");
 
 for (let i = 1; i <= 10; i++) {
 
     const item = document.createElement("div");
-
     item.className = "gallery-item";
 
     const image = document.createElement("img");
@@ -829,7 +787,6 @@ for (let i = 1; i <= 10; i++) {
     };
 
     const label = document.createElement("div");
-
     label.className = "gallery-label";
     label.textContent = "IMAGE " + i;
 
@@ -837,32 +794,33 @@ for (let i = 1; i <= 10; i++) {
     item.appendChild(label);
 
     item.addEventListener("click", function() {
-        openImagePreview(image.src);
+        if (image.complete && image.naturalWidth > 0) {
+            openImagePreview(image.src);
+        }
     });
 
     imageGallery.appendChild(item);
 }
 
-/* OPEN FULL SCREEN IMAGE */
-function openImagePreview(imageSrc) {
+/* OPEN IMAGE PREVIEW */
+function openImagePreview(src) {
 
-    const preview = document.getElementById("imagePreview");
-    const previewImage = document.getElementById("previewImage");
+    document.getElementById("previewImage").src = src;
 
-    previewImage.src = imageSrc;
-    preview.classList.add("show");
+    document.getElementById("imagePreview")
+        .classList.add("show");
 }
 
-/* CLOSE IMAGE */
+/* CLOSE IMAGE PREVIEW */
 function closeImagePreview() {
 
-    const preview = document.getElementById("imagePreview");
+    document.getElementById("imagePreview")
+        .classList.remove("show");
 
-    preview.classList.remove("show");
     document.getElementById("previewImage").src = "";
 }
 
-/* CLOSE PREVIEW BY BACKGROUND TAP */
+/* TAP OUTSIDE IMAGE TO CLOSE */
 document.getElementById("imagePreview")
 .addEventListener("click", function(event) {
 
