@@ -45,7 +45,7 @@ html, body {
     display: block;
 }
 
-/* SHARED NIGHT SKY BACKGROUND */
+/* NIGHT SKY BACKGROUND */
 .scene {
     position: absolute;
     inset: 0;
@@ -198,9 +198,9 @@ html, body {
     background: #000;
 }
 
+/* NO IMAGE ON THIRD PAGE */
 .notes-background {
-    position: absolute;
-    inset: 0;
+    display: none;
 }
 
 .notes-content {
@@ -219,6 +219,7 @@ html, body {
     display: none;
 }
 
+/* WELCOME TEXT */
 .welcome-section {
     text-align: center;
     padding: 28px 10px 25px;
@@ -242,18 +243,18 @@ html, body {
     font-weight: 400;
 }
 
-.section-title {
-    text-align: center;
-    color: var(--gold-light);
-    font-size: 12px;
-    letter-spacing: 4px;
-    margin: 22px 0;
+/* NOTES MAIN BUTTON */
+.main-notes-btn {
+    min-height: 65px;
+    justify-content: center;
 }
 
+/* NOTE BUTTONS */
 .note-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 12px;
 }
 
 .note-btn {
@@ -261,7 +262,7 @@ html, body {
     min-height: 55px;
     border: 1px solid rgba(214,173,69,.55);
     border-radius: 10px;
-    background: rgba(0,0,0,.68);
+    background: rgba(15,15,15,.95);
     color: #f5d77b;
     font-family: inherit;
     font-size: 12px;
@@ -283,6 +284,7 @@ html, body {
     font-size: 17px;
 }
 
+/* NOTE VIEWER */
 .note-viewer {
     display: none;
     margin-top: 20px;
@@ -290,7 +292,7 @@ html, body {
     min-height: 130px;
     border: 1px solid rgba(214,173,69,.55);
     border-radius: 10px;
-    background: rgba(0,0,0,.82);
+    background: #0b0b0b;
 }
 
 .note-viewer.show {
@@ -311,12 +313,6 @@ html, body {
     white-space: pre-wrap;
     overflow-wrap: anywhere;
     user-select: text;
-}
-
-.note-status {
-    color: #aaa;
-    font-size: 11px;
-    line-height: 1.7;
 }
 
 /* NOTIFICATION */
@@ -388,7 +384,6 @@ html, body {
     letter-spacing: 3px;
 }
 
-/* SMALL SCREEN */
 @media (max-width: 360px) {
     .welcome-title {
         font-size: 23px;
@@ -431,7 +426,7 @@ html, body {
 </section>
 
 
-<!-- PAGE 2 : HOME / BACKGROUND -->
+<!-- PAGE 2 : HOME -->
 <section id="homePage" class="page">
 
     <div class="scene home-background"></div>
@@ -447,8 +442,6 @@ html, body {
 <!-- PAGE 3 : NOTES -->
 <section id="notesPage" class="page">
 
-    <div class="scene notes-background"></div>
-
     <header class="topbar">
         <div class="top-logo">EWO.</div>
         <button class="back-btn" onclick="goBack()">← BACK</button>
@@ -456,16 +449,26 @@ html, body {
 
     <main class="notes-content">
 
-        <!-- MOVED WELCOME TEXT -->
         <div class="welcome-section">
             <div class="welcome-title">WELCOME TO EWO</div>
             <div class="welcome-subtitle">YOUR OWN PRIVATE WORLD</div>
         </div>
 
-        <div class="section-title">PRIVATE NOTES</div>
+        <!-- MAIN NOTES BUTTON -->
+        <div id="notesMainMenu">
+            <button class="note-btn main-notes-btn"
+                    onclick="toggleNoteButtons()">
+                <span>NOTES</span>
+                <span class="note-arrow">⌄</span>
+            </button>
+        </div>
 
-        <div class="note-list" id="noteList"></div>
+        <!-- NOTE 1 - 10 -->
+        <div id="noteButtonsPage" style="display:none;">
+            <div class="note-list" id="noteList"></div>
+        </div>
 
+        <!-- NOTE CONTENT -->
         <div class="note-viewer" id="noteViewer">
             <div class="note-heading" id="noteHeading"></div>
             <div class="note-text" id="noteText"></div>
@@ -546,7 +549,7 @@ function login() {
     }
 }
 
-/* ENTER KEY LOGIN */
+/* ENTER KEY */
 document.getElementById("passwordInput")
 .addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
@@ -554,7 +557,7 @@ document.getElementById("passwordInput")
     }
 });
 
-/* CLOSE MESSAGE -> THIRD PAGE */
+/* CLOSE NOTIFICATION -> THIRD PAGE */
 function closeNotification() {
     notification.classList.remove("show");
     notificationOpened = false;
@@ -570,6 +573,7 @@ function logout() {
     notificationOpened = false;
 
     closeNote();
+    resetNotesMenu();
 
     showPage(loginPage);
 }
@@ -577,10 +581,30 @@ function logout() {
 /* BACK TO SECOND PAGE */
 function goBack() {
     closeNote();
+    resetNotesMenu();
+
     showPage(homePage);
 }
 
-/* CREATE NOTE BUTTONS */
+/* NOTES MAIN BUTTON */
+function toggleNoteButtons() {
+    const buttons = document.getElementById("noteButtonsPage");
+
+    if (buttons.style.display === "none") {
+        buttons.style.display = "block";
+    } else {
+        buttons.style.display = "none";
+        closeNote();
+    }
+}
+
+/* RESET NOTES MENU */
+function resetNotesMenu() {
+    document.getElementById("noteButtonsPage").style.display = "none";
+    closeNote();
+}
+
+/* CREATE NOTE BUTTONS 1 - 10 */
 const noteList = document.getElementById("noteList");
 
 for (let i = 1; i <= 10; i++) {
@@ -614,7 +638,6 @@ async function openGitNote(number) {
     text.textContent = "Loading note...";
 
     const fileName = encodeURIComponent("Note " + number + ".txt");
-
     const noteURL = "NOTES/" + fileName + "?v=" + Date.now();
 
     try {
@@ -637,7 +660,6 @@ async function openGitNote(number) {
             "Unable to load this note.\n\n" +
             "Please check that this file exists:\n" +
             "NOTES/Note " + number + ".txt";
-
     }
 }
 
@@ -647,7 +669,7 @@ function closeNote() {
         .classList.remove("show");
 }
 
-/* PREVENT DOUBLE-TAP ZOOM */
+/* PREVENT DOUBLE TAP ZOOM */
 document.addEventListener("dblclick", function(event) {
     event.preventDefault();
 }, { passive: false });
