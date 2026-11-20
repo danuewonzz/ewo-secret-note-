@@ -65,12 +65,7 @@ input, textarea {
     padding: 25px;
 }
 
-/* GOLD TEXT */
-.gold {
-    color: #e4bd59;
-    text-shadow: 0 0 15px rgba(228,189,89,.25);
-}
-
+/* LOGIN */
 .logo {
     font-size: 43px;
     font-weight: 800;
@@ -86,7 +81,6 @@ input, textarea {
     margin-top: 10px;
 }
 
-/* PAGE 1 LOGIN */
 .login-box {
     width: 100%;
     max-width: 350px;
@@ -108,7 +102,6 @@ input, textarea {
     border-radius: 10px;
     background: rgba(0,0,0,.65);
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(214,173,69,.08);
 }
 
 .password-wrap input {
@@ -137,7 +130,6 @@ input, textarea {
     background: transparent;
     color: #e4bd59;
     font-size: 20px;
-    cursor: pointer;
 }
 
 .main-btn {
@@ -152,7 +144,6 @@ input, textarea {
     font-weight: 800;
     font-size: 12px;
     letter-spacing: 3px;
-    cursor: pointer;
 }
 
 .error {
@@ -173,7 +164,7 @@ input, textarea {
     letter-spacing: 3px;
 }
 
-/* PAGE 2 HOME */
+/* HOME */
 .home-content {
     min-height: 100%;
     position: relative;
@@ -232,7 +223,6 @@ input, textarea {
     color: #ddd;
     font-size: 14px;
     line-height: 2;
-    font-weight: 400;
 }
 
 .close-btn {
@@ -247,7 +237,7 @@ input, textarea {
     letter-spacing: 3px;
 }
 
-/* COMMON PAGE HEADER */
+/* HEADER */
 .page-header {
     width: 100%;
     padding: 25px 20px;
@@ -275,7 +265,7 @@ input, textarea {
     letter-spacing: 2px;
 }
 
-/* PAGE 3 MAIN MENU */
+/* MAIN MENU */
 .main-menu {
     min-height: calc(100% - 80px);
     display: flex;
@@ -320,10 +310,9 @@ input, textarea {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 4px;
-    box-shadow: 0 0 15px rgba(214,173,69,.06);
 }
 
-/* PAGE 4 NOTES */
+/* SECTION TITLES */
 .section-title {
     text-align: center;
     color: #e4bd59;
@@ -332,6 +321,7 @@ input, textarea {
     margin: 30px 0;
 }
 
+/* NOTES LIST PAGE */
 .notes-list {
     padding: 0 20px 35px;
     display: flex;
@@ -352,26 +342,32 @@ input, textarea {
     letter-spacing: 2px;
 }
 
-.note-viewer {
-    display: none;
-    margin: 0 20px 35px;
-    padding: 22px;
-    border: 1px solid #a88432;
-    border-radius: 10px;
-    background: #090909;
+/* SEPARATE NOTE VIEWER PAGE */
+.note-viewer-content {
+    padding: 25px 20px 40px;
 }
 
-.note-viewer h3 {
+.note-page-title {
     color: #e4bd59;
-    font-size: 14px;
-    margin-bottom: 18px;
-    letter-spacing: 2px;
+    font-size: 20px;
+    letter-spacing: 4px;
+    text-align: center;
+    margin: 15px 0 30px;
+}
+
+.note-paper {
+    min-height: 300px;
+    padding: 23px;
+    border: 1px solid #a88432;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #100e09, #050505);
+    box-shadow: 0 0 20px rgba(214,173,69,.06);
 }
 
 .note-text {
     color: #ddd;
     font-size: 13px;
-    line-height: 2;
+    line-height: 2.1;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }
@@ -379,10 +375,11 @@ input, textarea {
 .note-status {
     color: #999;
     font-size: 11px;
-    margin-top: 12px;
+    margin-top: 15px;
+    text-align: center;
 }
 
-/* PAGE 5 IMAGES */
+/* IMAGE GALLERY */
 .gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -396,7 +393,6 @@ input, textarea {
     border-radius: 10px;
     background: #111;
     overflow: hidden;
-    position: relative;
 }
 
 .image-card img {
@@ -414,6 +410,7 @@ input, textarea {
     letter-spacing: 2px;
 }
 
+/* IMAGE PREVIEW */
 .preview {
     display: none;
     position: fixed;
@@ -447,7 +444,6 @@ input, textarea {
     font-size: 12px;
 }
 
-/* SMALL SCREENS */
 @media(max-width: 360px) {
     .logo { font-size: 36px; }
     .welcome-title { font-size: 21px; }
@@ -481,11 +477,11 @@ input, textarea {
                     inputmode="numeric"
                     oninput="checkPassword()"
                 >
-                <button class="eye-btn" type="button" onclick="togglePassword()" id="eyeButton">👁</button>
+                <button class="eye-btn" type="button"
+                    onclick="togglePassword()" id="eyeButton">👁</button>
             </div>
 
             <button class="main-btn" onclick="login()">UNLOCK</button>
-
             <div class="error" id="errorMessage"></div>
         </div>
     </div>
@@ -497,7 +493,6 @@ input, textarea {
 <!-- PAGE 2: HOME -->
 <section class="page" id="homePage">
     <div class="scene"></div>
-
     <div class="home-content">
         <button class="logout" onclick="logout()">LOG OUT</button>
     </div>
@@ -506,7 +501,6 @@ input, textarea {
 
 <!-- PAGE 3: MAIN MENU -->
 <section class="page" id="mainPage">
-
     <div class="page-header">
         <div class="header-logo">EWO.</div>
         <button class="back-btn" onclick="openPage('homePage')">BACK</button>
@@ -529,9 +523,8 @@ input, textarea {
 </section>
 
 
-<!-- PAGE 4: NOTES -->
+<!-- PAGE 4: NOTES LIST -->
 <section class="page" id="notesPage">
-
     <div class="page-header">
         <div class="header-logo">EWO.</div>
         <button class="back-btn" onclick="openPage('mainPage')">BACK</button>
@@ -540,25 +533,35 @@ input, textarea {
     <h2 class="section-title">PRIVATE NOTES</h2>
 
     <div class="notes-list" id="notesList"></div>
+</section>
 
-    <div class="note-viewer" id="noteViewer">
-        <h3 id="noteHeading">NOTE</h3>
-        <div class="note-text" id="noteText"></div>
-        <div class="note-status" id="noteStatus"></div>
+
+<!-- PAGE 5: SEPARATE NOTE VIEWER -->
+<section class="page" id="noteViewerPage">
+    <div class="page-header">
+        <div class="header-logo">EWO.</div>
+        <button class="back-btn" onclick="openPage('notesPage')">BACK</button>
+    </div>
+
+    <div class="note-viewer-content">
+        <h2 class="note-page-title" id="noteHeading">NOTE 1</h2>
+
+        <div class="note-paper">
+            <div class="note-text" id="noteText"></div>
+            <div class="note-status" id="noteStatus"></div>
+        </div>
     </div>
 </section>
 
 
-<!-- PAGE 5: IMAGES -->
+<!-- PAGE 6: IMAGE GALLERY -->
 <section class="page" id="imagesPage">
-
     <div class="page-header">
         <div class="header-logo">EWO.</div>
         <button class="back-btn" onclick="openPage('mainPage')">BACK</button>
     </div>
 
     <h2 class="section-title">IMAGE GALLERY</h2>
-
     <div class="gallery" id="imageGallery"></div>
 </section>
 
@@ -588,6 +591,7 @@ input, textarea {
 
 
 <script>
+
 /* PAGE NAVIGATION */
 function openPage(pageId) {
     document.querySelectorAll('.page').forEach(page => {
@@ -615,7 +619,7 @@ function togglePassword() {
 }
 
 
-/* AUTO PASSWORD CHECK */
+/* AUTO LOGIN */
 let loginStarted = false;
 
 function checkPassword() {
@@ -625,11 +629,7 @@ function checkPassword() {
     error.textContent = '';
 
     if (input.value === '19971128' && !loginStarted) {
-        loginStarted = true;
-
-        setTimeout(() => {
-            login();
-        }, 150);
+        login();
     }
 }
 
@@ -639,24 +639,19 @@ function login() {
     const password = document.getElementById('passwordInput').value;
     const error = document.getElementById('errorMessage');
 
-    if (password === '19971128') {
-        if (loginStarted && document.getElementById('homePage').classList.contains('active')) {
-            return;
-        }
-
+    if (password === '19971128' && !loginStarted) {
         loginStarted = true;
 
         openPage('homePage');
 
         document.getElementById('notification').classList.add('show');
-    } else {
+    } else if (password !== '19971128') {
         error.textContent = 'Incorrect Password. Try Again.';
-        document.getElementById('passwordInput').focus();
     }
 }
 
 
-/* CLOSE NOTIFICATION */
+/* NOTIFICATION */
 function closeNotification() {
     document.getElementById('notification').classList.remove('show');
     openPage('mainPage');
@@ -666,6 +661,7 @@ function closeNotification() {
 /* LOG OUT */
 function logout() {
     document.getElementById('notification').classList.remove('show');
+
     document.getElementById('passwordInput').value = '';
     document.getElementById('passwordInput').type = 'password';
     document.getElementById('eyeButton').textContent = '👁';
@@ -678,7 +674,7 @@ function logout() {
 }
 
 
-/* NOTES SYSTEM */
+/* CREATE NOTE BUTTONS */
 const notesList = document.getElementById('notesList');
 
 for (let i = 1; i <= 10; i++) {
@@ -686,26 +682,32 @@ for (let i = 1; i <= 10; i++) {
 
     button.className = 'note-btn';
     button.textContent = 'NOTE ' + i;
-    button.onclick = () => loadNote(i);
+
+    button.onclick = function() {
+        loadNote(i);
+    };
 
     notesList.appendChild(button);
 }
 
 
+/* OPEN NOTE IN ITS OWN PAGE */
 async function loadNote(number) {
-    const viewer = document.getElementById('noteViewer');
     const heading = document.getElementById('noteHeading');
     const text = document.getElementById('noteText');
     const status = document.getElementById('noteStatus');
 
-    viewer.style.display = 'block';
     heading.textContent = 'NOTE ' + number;
     text.textContent = 'Loading...';
     status.textContent = '';
 
+    /* Navigate to separate viewer page */
+    openPage('noteViewerPage');
+
     try {
         const response = await fetch(
-            'NOTES/' + encodeURIComponent('Note ' + number + '.txt') +
+            'NOTES/' +
+            encodeURIComponent('Note ' + number + '.txt') +
             '?v=' + Date.now()
         );
 
@@ -716,6 +718,7 @@ async function loadNote(number) {
         const content = await response.text();
 
         text.textContent = content || 'This note is empty.';
+
     } catch (error) {
         text.textContent = 'Unable to load this note.';
         status.textContent =
@@ -749,7 +752,6 @@ for (let i = 1; i <= 10; i++) {
 
     card.appendChild(img);
     card.appendChild(label);
-
     gallery.appendChild(card);
 }
 
@@ -768,7 +770,6 @@ function closePreview() {
 
 /* RESET */
 function resetAll() {
-    document.getElementById('noteViewer').style.display = 'none';
     document.getElementById('noteText').textContent = '';
     document.getElementById('noteStatus').textContent = '';
     closePreview();
