@@ -21,23 +21,22 @@ html, body {
     height: 100%;
     overflow: hidden;
     background: #000;
-    color: #fff;
+    color: white;
     font-family: 'Montserrat', sans-serif;
     user-select: none;
 }
 
-:root {
-    --gold: #d6ad45;
-    --gold-light: #f5d77b;
+input, textarea {
+    user-select: text;
 }
 
 .page {
     display: none;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    position: relative;
-    overflow: hidden;
+    height: 100%;
+    overflow-y: auto;
     background: #000;
 }
 
@@ -49,351 +48,162 @@ html, body {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.65)),
-        url("file_000000003d188212a637e33ebda69a68.webp");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.65)),
+        url("file_000000003d188212a637e33ebda69a68.webp")
+        center / cover no-repeat;
+    z-index: 0;
 }
 
-/* LOGIN */
-#loginPage {
-    display: none;
+.content {
+    position: relative;
+    z-index: 1;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 25px;
 }
 
-#loginPage.active {
-    display: flex;
-}
-
-.login-box {
-    position: relative;
-    z-index: 2;
-    width: 85%;
-    max-width: 360px;
-    padding: 38px 25px;
-    text-align: center;
-    border: 1px solid rgba(214,173,69,.55);
-    border-radius: 18px;
-    background: rgba(0,0,0,.70);
-    box-shadow: 0 0 30px rgba(214,173,69,.10);
-    backdrop-filter: blur(12px);
+/* GOLD TEXT */
+.gold {
+    color: #e4bd59;
+    text-shadow: 0 0 15px rgba(228,189,89,.25);
 }
 
 .logo {
-    color: var(--gold-light);
-    font-size: 48px;
+    font-size: 43px;
     font-weight: 800;
-    letter-spacing: 7px;
-    margin-bottom: 8px;
+    letter-spacing: 8px;
+    color: #e4bd59;
+    text-shadow: 0 0 20px rgba(228,189,89,.35);
 }
 
-.login-subtitle {
+.subtitle {
     color: #aaa;
     font-size: 10px;
     letter-spacing: 4px;
-    margin-bottom: 35px;
+    margin-top: 10px;
 }
 
-.password-input {
+/* PAGE 1 LOGIN */
+.login-box {
     width: 100%;
-    padding: 15px;
-    border: 1px solid rgba(214,173,69,.55);
-    border-radius: 8px;
+    max-width: 350px;
+    text-align: center;
+}
+
+.login-title {
+    font-size: 13px;
+    color: #d6ad45;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.password-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #a88432;
+    border-radius: 10px;
+    background: rgba(0,0,0,.65);
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(214,173,69,.08);
+}
+
+.password-wrap input {
+    flex: 1;
+    min-width: 0;
+    padding: 16px;
+    background: transparent;
+    border: none;
     outline: none;
     color: white;
-    background: rgba(255,255,255,.05);
     font-family: inherit;
-    text-align: center;
-    letter-spacing: 3px;
     font-size: 15px;
-}
-
-.password-input::placeholder {
-    color: #888;
-}
-
-.login-btn {
-    width: 100%;
-    margin-top: 18px;
-    padding: 14px;
-    border: 1px solid var(--gold);
-    border-radius: 8px;
-    color: #000;
-    background: linear-gradient(135deg, #f5d77b, #b8860b);
-    font-size: 12px;
-    font-weight: 800;
     letter-spacing: 3px;
-    font-family: inherit;
 }
 
-.login-error {
-    color: #ff5555;
-    font-size: 11px;
-    margin-top: 14px;
-    min-height: 15px;
-}
-
-.footer {
-    position: absolute;
-    z-index: 2;
-    bottom: 18px;
-    width: 100%;
-    text-align: center;
-    color: rgba(255,255,255,.55);
-    font-size: 9px;
+.password-wrap input::placeholder {
+    color: #777;
     letter-spacing: 2px;
+    font-size: 11px;
 }
 
-/* HEADER */
-.topbar {
-    position: absolute;
-    z-index: 5;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 65px;
-    padding: 0 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0,0,0,.55);
-    border-bottom: 1px solid rgba(214,173,69,.35);
-    backdrop-filter: blur(8px);
-}
-
-.top-logo {
-    color: var(--gold-light);
-    font-size: 23px;
-    font-weight: 800;
-    letter-spacing: 4px;
-}
-
-.header-btn {
-    color: #ff5555;
-    border: 1px solid rgba(255,75,75,.65);
-    background: rgba(0,0,0,.45);
-    border-radius: 6px;
-    padding: 9px 13px;
-    font-size: 10px;
-    font-family: inherit;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-/* SECOND PAGE */
-#homePage {
-    background: #000;
-}
-
-.home-background {
-    position: absolute;
-    inset: 65px 0 0;
-}
-
-/* ALL CONTENT PAGES */
-.content-area {
-    position: absolute;
-    top: 65px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow-y: auto;
-    padding: 25px 20px 35px;
-    scrollbar-width: none;
-}
-
-.content-area::-webkit-scrollbar {
-    display: none;
-}
-
-/* MAIN PAGE WELCOME */
-.welcome-section {
-    text-align: center;
-    padding: 28px 10px 25px;
-    margin-bottom: 22px;
-    border-bottom: 1px solid rgba(214,173,69,.35);
-}
-
-.welcome-title {
-    color: var(--gold-light);
-    font-size: 27px;
-    font-weight: 800;
-    letter-spacing: 3px;
-    margin-bottom: 12px;
-}
-
-.welcome-subtitle {
-    color: #ddd;
-    font-size: 10px;
-    letter-spacing: 3px;
-}
-
-/* MAIN BUTTONS */
-.main-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+.eye-btn {
+    width: 52px;
+    height: 50px;
+    border: none;
+    background: transparent;
+    color: #e4bd59;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .main-btn {
     width: 100%;
-    min-height: 65px;
-    border: 1px solid rgba(214,173,69,.65);
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #d6ad45;
     border-radius: 10px;
-    background: #0e0e0e;
-    color: var(--gold-light);
+    background: linear-gradient(135deg, #8b681f, #d6ad45, #8b681f);
+    color: #080808;
     font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 12px;
     letter-spacing: 3px;
     cursor: pointer;
 }
 
-/* SUB BUTTONS */
-.item-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.error {
+    min-height: 18px;
+    color: #ff5555;
+    font-size: 10px;
+    margin-top: 13px;
 }
 
-.item-btn {
-    width: 100%;
-    min-height: 55px;
-    border: 1px solid rgba(214,173,69,.55);
-    border-radius: 10px;
-    background: #0e0e0e;
-    color: #f5d77b;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-align: left;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.item-arrow {
-    color: #aaa;
-    font-size: 18px;
-}
-
-/* NOTE VIEWER */
-.note-viewer {
-    display: none;
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid rgba(214,173,69,.55);
-    border-radius: 10px;
-    background: #0b0b0b;
-}
-
-.note-viewer.show {
-    display: block;
-}
-
-.note-heading {
-    color: var(--gold-light);
-    font-size: 13px;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
-
-.note-text {
-    color: #eee;
-    font-size: 13px;
-    line-height: 1.9;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    user-select: text;
-}
-
-/* IMAGE GRID */
-.image-gallery {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.gallery-item {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border: 1px solid rgba(214,173,69,.65);
-    border-radius: 10px;
-    background: #111;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.gallery-label {
+.footer {
     position: absolute;
-    bottom: 0;
+    bottom: 22px;
     left: 0;
     width: 100%;
-    padding: 9px 5px;
-    color: #f5d77b;
-    background: rgba(0,0,0,.75);
     text-align: center;
+    color: #888;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+/* PAGE 2 HOME */
+.home-content {
+    min-height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.logout {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    padding: 10px 17px;
+    color: #ff5555;
+    background: rgba(0,0,0,.5);
+    border: 1px solid #a52c2c;
+    border-radius: 7px;
+    font-family: inherit;
     font-size: 10px;
     letter-spacing: 2px;
-}
-
-/* FULL IMAGE PREVIEW */
-.image-preview {
-    display: none;
-    position: fixed;
-    z-index: 50;
-    inset: 0;
-    background: rgba(0,0,0,.97);
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-.image-preview.show {
-    display: flex;
-}
-
-.image-preview img {
-    max-width: 100%;
-    max-height: 85%;
-    object-fit: contain;
-}
-
-.preview-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 42px;
-    height: 42px;
-    border: 1px solid var(--gold);
-    border-radius: 50%;
-    color: var(--gold-light);
-    background: #111;
-    font-size: 22px;
 }
 
 /* NOTIFICATION */
 .notification-overlay {
     display: none;
     position: fixed;
-    z-index: 20;
     inset: 0;
+    z-index: 20;
+    background: rgba(0,0,0,.88);
     align-items: center;
     justify-content: center;
     padding: 25px;
-    background: rgba(0,0,0,.82);
-    backdrop-filter: blur(8px);
 }
 
 .notification-overlay.show {
@@ -402,62 +212,247 @@ html, body {
 
 .notification-box {
     width: 100%;
-    max-width: 390px;
-    padding: 35px 24px 25px;
+    max-width: 360px;
+    padding: 35px 25px;
     text-align: center;
-    border: 1px solid var(--gold);
+    border: 1px solid #b68d35;
     border-radius: 17px;
-    background: linear-gradient(145deg, rgba(25,21,12,.98), rgba(0,0,0,.98));
-    box-shadow: 0 0 35px rgba(214,173,69,.18);
-    animation: popup .45s ease;
+    background: linear-gradient(145deg, #17130a, #050505);
+    box-shadow: 0 0 35px rgba(214,173,69,.15);
 }
 
-@keyframes popup {
-    from {
-        opacity: 0;
-        transform: scale(.85);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.notification-label {
-    color: var(--gold-light);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 4px;
+.notification-box h2 {
+    color: #e4bd59;
+    font-size: 17px;
+    letter-spacing: 3px;
     margin-bottom: 25px;
 }
 
-.notification-message {
-    color: #f1e7d0;
-    font-size: 15px;
+.message {
+    color: #ddd;
+    font-size: 14px;
     line-height: 2;
+    font-weight: 400;
 }
 
-.notification-close {
-    width: 100%;
+.close-btn {
     margin-top: 30px;
-    padding: 14px;
-    border: 1px solid var(--gold);
+    padding: 13px 35px;
+    background: transparent;
+    border: 1px solid #d6ad45;
+    color: #e4bd59;
     border-radius: 8px;
-    color: #000;
-    background: linear-gradient(135deg, #f5d77b, #b8860b);
     font-family: inherit;
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 10px;
     letter-spacing: 3px;
 }
 
-@media (max-width: 360px) {
-    .welcome-title {
-        font-size: 23px;
-    }
-    .notification-message {
-        font-size: 13px;
-    }
+/* COMMON PAGE HEADER */
+.page-header {
+    width: 100%;
+    padding: 25px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(214,173,69,.5);
+}
+
+.header-logo {
+    color: #e4bd59;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 5px;
+}
+
+.back-btn {
+    background: transparent;
+    border: 1px solid #a52c2c;
+    color: #ff5555;
+    padding: 9px 17px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* PAGE 3 MAIN MENU */
+.main-menu {
+    min-height: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.welcome-title {
+    color: #e4bd59;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-align: center;
+}
+
+.welcome-subtitle {
+    margin-top: 13px;
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.menu-buttons {
+    width: 100%;
+    max-width: 330px;
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-btn {
+    padding: 20px;
+    background: linear-gradient(145deg, #17130a, #050505);
+    border: 1px solid #a88432;
+    border-radius: 12px;
+    color: #e4bd59;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    box-shadow: 0 0 15px rgba(214,173,69,.06);
+}
+
+/* PAGE 4 NOTES */
+.section-title {
+    text-align: center;
+    color: #e4bd59;
+    font-size: 18px;
+    letter-spacing: 4px;
+    margin: 30px 0;
+}
+
+.notes-list {
+    padding: 0 20px 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.note-btn {
+    width: 100%;
+    padding: 17px;
+    text-align: left;
+    color: #e4bd59;
+    background: #0b0b0b;
+    border: 1px solid #6f5523;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.note-viewer {
+    display: none;
+    margin: 0 20px 35px;
+    padding: 22px;
+    border: 1px solid #a88432;
+    border-radius: 10px;
+    background: #090909;
+}
+
+.note-viewer h3 {
+    color: #e4bd59;
+    font-size: 14px;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+}
+
+.note-text {
+    color: #ddd;
+    font-size: 13px;
+    line-height: 2;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.note-status {
+    color: #999;
+    font-size: 11px;
+    margin-top: 12px;
+}
+
+/* PAGE 5 IMAGES */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+    padding: 0 15px 35px;
+}
+
+.image-card {
+    min-height: 145px;
+    border: 1px solid #8b681f;
+    border-radius: 10px;
+    background: #111;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-card img {
+    display: block;
+    width: 100%;
+    height: 145px;
+    object-fit: cover;
+}
+
+.image-label {
+    padding: 10px 5px;
+    color: #e4bd59;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.preview {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background: rgba(0,0,0,.96);
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.preview.show {
+    display: flex;
+}
+
+.preview img {
+    max-width: 100%;
+    max-height: 82vh;
+    object-fit: contain;
+}
+
+.preview-close {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    color: #ff5555;
+    background: #111;
+    border: 1px solid #a52c2c;
+    border-radius: 7px;
+    padding: 10px 16px;
+    font-size: 12px;
+}
+
+/* SMALL SCREENS */
+@media(max-width: 360px) {
+    .logo { font-size: 36px; }
+    .welcome-title { font-size: 21px; }
+    .image-card img { height: 125px; }
+    .image-card { min-height: 125px; }
 }
 </style>
 </head>
@@ -465,379 +460,329 @@ html, body {
 <body>
 
 <!-- PAGE 1: LOGIN -->
-<section id="loginPage" class="page active">
-
+<section class="page active" id="loginPage">
     <div class="scene"></div>
 
-    <div class="login-box">
-        <div class="logo">DANU EWONZ</div>
-        <div class="login-subtitle">PRIVATE SPACE</div>
+    <div class="content">
+        <div class="login-box">
+            <div class="logo">EWO</div>
+            <div class="subtitle">PRIVATE SPACE</div>
 
-        <input
-            type="password"
-            id="passwordInput"
-            class="password-input"
-            placeholder="ENTER PASSWORD"
-            autocomplete="off"
-        >
+            <div style="height:55px"></div>
 
-        <button class="login-btn" onclick="login()">
-            UNLOCK SPACE
-        </button>
+            <div class="login-title">ENTER YOUR PASSWORD</div>
 
-        <div id="loginError" class="login-error"></div>
+            <div class="password-wrap">
+                <input
+                    type="password"
+                    id="passwordInput"
+                    placeholder="ENTER PASSWORD"
+                    autocomplete="off"
+                    inputmode="numeric"
+                    oninput="checkPassword()"
+                >
+                <button class="eye-btn" type="button" onclick="togglePassword()" id="eyeButton">👁</button>
+            </div>
+
+            <button class="main-btn" onclick="login()">UNLOCK</button>
+
+            <div class="error" id="errorMessage"></div>
+        </div>
     </div>
 
-    <div class="footer">DANU EWONZ • 2026 (END STORY)</div>
+    <div class="footer">DANU EWONZ • 2026</div>
 </section>
 
 
 <!-- PAGE 2: HOME -->
-<section id="homePage" class="page">
+<section class="page" id="homePage">
+    <div class="scene"></div>
 
-    <div class="scene home-background"></div>
-
-    <header class="topbar">
-        <div class="top-logo">EWO.</div>
-        <button class="header-btn" onclick="logout()">LOG OUT</button>
-    </header>
-
+    <div class="home-content">
+        <button class="logout" onclick="logout()">LOG OUT</button>
+    </div>
 </section>
 
 
 <!-- PAGE 3: MAIN MENU -->
-<section id="mainPage" class="page">
+<section class="page" id="mainPage">
 
-    <header class="topbar">
-        <div class="top-logo">EWO.</div>
-        <button class="header-btn" onclick="goHome()">← BACK</button>
-    </header>
+    <div class="page-header">
+        <div class="header-logo">EWO.</div>
+        <button class="back-btn" onclick="openPage('homePage')">BACK</button>
+    </div>
 
-    <main class="content-area">
+    <div class="main-menu">
+        <div class="welcome-title">WELCOME TO EWO</div>
+        <div class="welcome-subtitle">YOUR OWN PRIVATE WORLD</div>
 
-        <div class="welcome-section">
-            <div class="welcome-title">WELCOME TO Mis SADALI SITHUNIKA</div>
-            <div class="welcome-subtitle">Delete Ewonz All Secret & Memorys</div>
-        </div>
-
-        <div class="main-menu">
-
-            <button class="main-btn" onclick="openPage('notesPage')">
+        <div class="menu-buttons">
+            <button class="menu-btn" onclick="openPage('notesPage')">
                 NOTES
             </button>
 
-            <button class="main-btn" onclick="openPage('imagesPage')">
+            <button class="menu-btn" onclick="openPage('imagesPage')">
                 ♡ IMAGE
             </button>
-
         </div>
-
-        <div class="footer" style="position:relative; bottom:auto; margin-top:35px;">
-            DANU EWONZ • 2026
-        </div>
-
-    </main>
+    </div>
 </section>
 
 
 <!-- PAGE 4: NOTES -->
-<section id="notesPage" class="page">
+<section class="page" id="notesPage">
 
-    <header class="topbar">
-        <div class="top-logo">EWO.</div>
-        <button class="header-btn" onclick="openPage('mainPage')">← BACK</button>
-    </header>
+    <div class="page-header">
+        <div class="header-logo">EWO.</div>
+        <button class="back-btn" onclick="openPage('mainPage')">BACK</button>
+    </div>
 
-    <main class="content-area">
+    <h2 class="section-title">PRIVATE NOTES</h2>
 
-        <div class="section-heading" style="text-align:center;color:#f5d77b;letter-spacing:4px;margin-bottom:22px;">
-            PRIVATE NOTES
-        </div>
+    <div class="notes-list" id="notesList"></div>
 
-        <div class="item-list" id="noteList"></div>
-
-        <div class="note-viewer" id="noteViewer">
-            <div class="note-heading" id="noteHeading"></div>
-            <div class="note-text" id="noteText"></div>
-        </div>
-
-    </main>
+    <div class="note-viewer" id="noteViewer">
+        <h3 id="noteHeading">NOTE</h3>
+        <div class="note-text" id="noteText"></div>
+        <div class="note-status" id="noteStatus"></div>
+    </div>
 </section>
 
 
 <!-- PAGE 5: IMAGES -->
-<section id="imagesPage" class="page">
+<section class="page" id="imagesPage">
 
-    <header class="topbar">
-        <div class="top-logo">EWO.</div>
-        <button class="header-btn" onclick="openPage('mainPage')">← BACK</button>
-    </header>
+    <div class="page-header">
+        <div class="header-logo">EWO.</div>
+        <button class="back-btn" onclick="openPage('mainPage')">BACK</button>
+    </div>
 
-    <main class="content-area">
+    <h2 class="section-title">IMAGE GALLERY</h2>
 
-        <div style="text-align:center;color:#f5d77b;letter-spacing:4px;margin-bottom:22px;">
-            PRIVATE IMAGES
-        </div>
-
-        <div class="image-gallery" id="imageGallery"></div>
-
-    </main>
+    <div class="gallery" id="imageGallery"></div>
 </section>
 
 
 <!-- NOTIFICATION -->
-<div class="notification-overlay" id="quoteNotification">
-
+<div class="notification-overlay" id="notification">
     <div class="notification-box">
+        <h2>♡ PRIVATE MESSAGE</h2>
 
-        <div class="notification-label">A PRIVATE MESSAGE</div>
-
-        <div class="notification-message">
+        <div class="message">
             Even if I die, I will always love that heart with all mine.
             When I'm no longer around, please keep living happily. 🥀
         </div>
 
-        <button class="notification-close" onclick="closeNotification()">
+        <button class="close-btn" onclick="closeNotification()">
             CONTINUE
         </button>
-
     </div>
 </div>
 
 
 <!-- IMAGE PREVIEW -->
-<div class="image-preview" id="imagePreview">
-
-    <button class="preview-close" onclick="closeImagePreview()">×</button>
-
+<div class="preview" id="imagePreview" onclick="closePreview()">
+    <button class="preview-close" onclick="closePreview()">CLOSE ✕</button>
     <img id="previewImage" src="" alt="Private Image">
-
 </div>
 
 
 <script>
-const PASSWORD = "19971128";
-
-const pages = document.querySelectorAll(".page");
-
-let notificationOpened = false;
-
 /* PAGE NAVIGATION */
 function openPage(pageId) {
-
-    pages.forEach(page => {
-        page.classList.remove("active");
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
     });
 
-    document.getElementById(pageId).classList.add("active");
-
-    closeImagePreview();
+    document.getElementById(pageId).classList.add('active');
 }
 
-/* LOGIN */
-function login() {
 
-    const enteredPassword =
-        document.getElementById("passwordInput").value;
+/* PASSWORD SHOW / HIDE */
+function togglePassword() {
+    const input = document.getElementById('passwordInput');
+    const eye = document.getElementById('eyeButton');
 
-    const error =
-        document.getElementById("loginError");
+    if (input.type === 'password') {
+        input.type = 'text';
+        eye.textContent = '🙈';
+    } else {
+        input.type = 'password';
+        eye.textContent = '👁';
+    }
 
-    if (enteredPassword === PASSWORD) {
+    input.focus();
+}
 
-        error.textContent = "";
-        document.getElementById("passwordInput").value = "";
 
-        resetAll();
-        openPage("homePage");
+/* AUTO PASSWORD CHECK */
+let loginStarted = false;
 
-        notificationOpened = true;
+function checkPassword() {
+    const input = document.getElementById('passwordInput');
+    const error = document.getElementById('errorMessage');
+
+    error.textContent = '';
+
+    if (input.value === '19971128' && !loginStarted) {
+        loginStarted = true;
 
         setTimeout(() => {
-            if (
-                notificationOpened &&
-                document.getElementById("homePage").classList.contains("active")
-            ) {
-                document.getElementById("quoteNotification")
-                    .classList.add("show");
-            }
-        }, 500);
-
-    } else {
-        error.textContent = "Incorrect Password. Try Again.";
+            login();
+        }, 150);
     }
 }
 
-/* ENTER KEY */
-document.getElementById("passwordInput")
-.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") login();
-});
+
+/* LOGIN */
+function login() {
+    const password = document.getElementById('passwordInput').value;
+    const error = document.getElementById('errorMessage');
+
+    if (password === '19971128') {
+        if (loginStarted && document.getElementById('homePage').classList.contains('active')) {
+            return;
+        }
+
+        loginStarted = true;
+
+        openPage('homePage');
+
+        document.getElementById('notification').classList.add('show');
+    } else {
+        error.textContent = 'Incorrect Password. Try Again.';
+        document.getElementById('passwordInput').focus();
+    }
+}
+
 
 /* CLOSE NOTIFICATION */
 function closeNotification() {
-
-    document.getElementById("quoteNotification")
-        .classList.remove("show");
-
-    notificationOpened = false;
-
-    openPage("mainPage");
+    document.getElementById('notification').classList.remove('show');
+    openPage('mainPage');
 }
 
-/* SECOND PAGE BACK */
-function goHome() {
-    openPage("homePage");
-}
 
 /* LOG OUT */
 function logout() {
+    document.getElementById('notification').classList.remove('show');
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('passwordInput').type = 'password';
+    document.getElementById('eyeButton').textContent = '👁';
+    document.getElementById('errorMessage').textContent = '';
 
-    notificationOpened = false;
-
-    document.getElementById("quoteNotification")
-        .classList.remove("show");
+    loginStarted = false;
 
     resetAll();
-    openPage("loginPage");
+    openPage('loginPage');
 }
 
-/* RESET */
-function resetAll() {
 
-    document.getElementById("noteViewer").classList.remove("show");
-
-    closeImagePreview();
-}
-
-/* CREATE NOTE BUTTONS */
-const noteList = document.getElementById("noteList");
+/* NOTES SYSTEM */
+const notesList = document.getElementById('notesList');
 
 for (let i = 1; i <= 10; i++) {
+    const button = document.createElement('button');
 
-    const button = document.createElement("button");
+    button.className = 'note-btn';
+    button.textContent = 'NOTE ' + i;
+    button.onclick = () => loadNote(i);
 
-    button.className = "item-btn";
-
-    button.innerHTML = `
-        <span>NOTE ${i}</span>
-        <span class="item-arrow">›</span>
-    `;
-
-    button.addEventListener("click", function() {
-        openGitNote(i);
-    });
-
-    noteList.appendChild(button);
+    notesList.appendChild(button);
 }
 
-/* LOAD GITHUB NOTE */
-async function openGitNote(number) {
 
-    const viewer = document.getElementById("noteViewer");
-    const heading = document.getElementById("noteHeading");
-    const text = document.getElementById("noteText");
+async function loadNote(number) {
+    const viewer = document.getElementById('noteViewer');
+    const heading = document.getElementById('noteHeading');
+    const text = document.getElementById('noteText');
+    const status = document.getElementById('noteStatus');
 
-    viewer.classList.add("show");
-
-    heading.textContent = "NOTE " + number;
-    text.textContent = "Loading note...";
-
-    const fileName = encodeURIComponent("Note " + number + ".txt");
-    const noteURL = "NOTES/" + fileName + "?v=" + Date.now();
+    viewer.style.display = 'block';
+    heading.textContent = 'NOTE ' + number;
+    text.textContent = 'Loading...';
+    status.textContent = '';
 
     try {
-
-        const response = await fetch(noteURL, {
-            cache: "no-store"
-        });
+        const response = await fetch(
+            'NOTES/' + encodeURIComponent('Note ' + number + '.txt') +
+            '?v=' + Date.now()
+        );
 
         if (!response.ok) {
-            throw new Error("File not found");
+            throw new Error('File not found');
         }
 
         const content = await response.text();
 
-        text.textContent = content.trim() || "This note is empty.";
-
+        text.textContent = content || 'This note is empty.';
     } catch (error) {
-
-        text.textContent =
-            "Unable to load Note " + number +
-            ".\n\nPlease check the GitHub NOTES folder.";
+        text.textContent = 'Unable to load this note.';
+        status.textContent =
+            'Check NOTES/Note ' + number + '.txt in your GitHub repository.';
     }
 }
 
-/* CREATE IMAGE BUTTONS */
-const imageGallery = document.getElementById("imageGallery");
+
+/* IMAGE GALLERY */
+const gallery = document.getElementById('imageGallery');
 
 for (let i = 1; i <= 10; i++) {
+    const card = document.createElement('div');
+    card.className = 'image-card';
 
-    const item = document.createElement("div");
-    item.className = "gallery-item";
+    const img = document.createElement('img');
+    img.src = 'IMAGES/Image ' + i + '.jpg';
+    img.alt = 'Image ' + i;
 
-    const image = document.createElement("img");
-
-    image.src = "IMAGES/Image " + i + ".jpg";
-    image.alt = "Image " + i;
-    image.loading = "lazy";
-
-    image.onerror = function() {
-        item.style.display = "none";
+    img.onerror = function() {
+        card.style.display = 'none';
     };
 
-    const label = document.createElement("div");
-    label.className = "gallery-label";
-    label.textContent = "IMAGE " + i;
+    img.onclick = function() {
+        openPreview(this.src);
+    };
 
-    item.appendChild(image);
-    item.appendChild(label);
+    const label = document.createElement('div');
+    label.className = 'image-label';
+    label.textContent = 'IMAGE ' + i;
 
-    item.addEventListener("click", function() {
-        if (image.complete && image.naturalWidth > 0) {
-            openImagePreview(image.src);
-        }
-    });
+    card.appendChild(img);
+    card.appendChild(label);
 
-    imageGallery.appendChild(item);
+    gallery.appendChild(card);
 }
 
-/* OPEN IMAGE PREVIEW */
-function openImagePreview(src) {
 
-    document.getElementById("previewImage").src = src;
-
-    document.getElementById("imagePreview")
-        .classList.add("show");
+/* IMAGE PREVIEW */
+function openPreview(src) {
+    document.getElementById('previewImage').src = src;
+    document.getElementById('imagePreview').classList.add('show');
 }
 
-/* CLOSE IMAGE PREVIEW */
-function closeImagePreview() {
-
-    document.getElementById("imagePreview")
-        .classList.remove("show");
-
-    document.getElementById("previewImage").src = "";
+function closePreview() {
+    document.getElementById('imagePreview').classList.remove('show');
+    document.getElementById('previewImage').src = '';
 }
 
-/* TAP OUTSIDE IMAGE TO CLOSE */
-document.getElementById("imagePreview")
-.addEventListener("click", function(event) {
 
-    if (event.target === this) {
-        closeImagePreview();
-    }
+/* RESET */
+function resetAll() {
+    document.getElementById('noteViewer').style.display = 'none';
+    document.getElementById('noteText').textContent = '';
+    document.getElementById('noteStatus').textContent = '';
+    closePreview();
+}
 
+
+/* PREVENT ACCIDENTAL ZOOM */
+document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
 });
 
-/* PREVENT DOUBLE TAP ZOOM */
-document.addEventListener("dblclick", function(event) {
-    event.preventDefault();
+document.addEventListener('dblclick', function(e) {
+    e.preventDefault();
 }, { passive: false });
-
-document.addEventListener("gesturestart", function(event) {
-    event.preventDefault();
-});
 
 </script>
 
