@@ -26,7 +26,7 @@ html, body {
     user-select: none;
 }
 
-input, textarea {
+input {
     user-select: text;
 }
 
@@ -54,6 +54,7 @@ input, textarea {
     z-index: 0;
 }
 
+/* LOGIN PAGE */
 .content {
     position: relative;
     z-index: 1;
@@ -65,7 +66,6 @@ input, textarea {
     padding: 25px;
 }
 
-/* LOGIN */
 .logo {
     font-size: 43px;
     font-weight: 800;
@@ -164,7 +164,7 @@ input, textarea {
     letter-spacing: 3px;
 }
 
-/* HOME */
+/* HOME PAGE */
 .home-content {
     min-height: 100%;
     position: relative;
@@ -312,7 +312,7 @@ input, textarea {
     letter-spacing: 4px;
 }
 
-/* SECTION TITLES */
+/* SECTION TITLE */
 .section-title {
     text-align: center;
     color: #e4bd59;
@@ -321,7 +321,7 @@ input, textarea {
     margin: 30px 0;
 }
 
-/* NOTES LIST PAGE */
+/* NOTES LIST */
 .notes-list {
     padding: 0 20px 35px;
     display: flex;
@@ -342,7 +342,7 @@ input, textarea {
     letter-spacing: 2px;
 }
 
-/* SEPARATE NOTE VIEWER PAGE */
+/* NOTE VIEWER PAGE */
 .note-viewer-content {
     padding: 25px 20px 40px;
 }
@@ -536,7 +536,7 @@ input, textarea {
 </section>
 
 
-<!-- PAGE 5: SEPARATE NOTE VIEWER -->
+<!-- PAGE 5: NOTE VIEWER -->
 <section class="page" id="noteViewerPage">
     <div class="page-header">
         <div class="header-logo">EWO.</div>
@@ -544,7 +544,7 @@ input, textarea {
     </div>
 
     <div class="note-viewer-content">
-        <h2 class="note-page-title" id="noteHeading">NOTE 1</h2>
+        <h2 class="note-page-title" id="noteHeading">NOTE</h2>
 
         <div class="note-paper">
             <div class="note-text" id="noteText"></div>
@@ -598,7 +598,12 @@ function openPage(pageId) {
         page.classList.remove('active');
     });
 
-    document.getElementById(pageId).classList.add('active');
+    const target = document.getElementById(pageId);
+
+    if (target) {
+        target.classList.add('active');
+        target.scrollTop = 0;
+    }
 }
 
 
@@ -643,8 +648,8 @@ function login() {
         loginStarted = true;
 
         openPage('homePage');
-
         document.getElementById('notification').classList.add('show');
+
     } else if (password !== '19971128') {
         error.textContent = 'Incorrect Password. Try Again.';
     }
@@ -674,7 +679,7 @@ function logout() {
 }
 
 
-/* CREATE NOTE BUTTONS */
+/* NOTE 1 - 10 BUTTONS */
 const notesList = document.getElementById('notesList');
 
 for (let i = 1; i <= 10; i++) {
@@ -691,7 +696,7 @@ for (let i = 1; i <= 10; i++) {
 }
 
 
-/* OPEN NOTE IN ITS OWN PAGE */
+/* LOAD ALL 10 NOTE FILES */
 async function loadNote(number) {
     const heading = document.getElementById('noteHeading');
     const text = document.getElementById('noteText');
@@ -701,13 +706,15 @@ async function loadNote(number) {
     text.textContent = 'Loading...';
     status.textContent = '';
 
-    /* Navigate to separate viewer page */
+    /* Open separate note page */
     openPage('noteViewerPage');
 
     try {
+        const fileName = 'Note ' + number + '.txt';
+
         const response = await fetch(
             'NOTES/' +
-            encodeURIComponent('Note ' + number + '.txt') +
+            encodeURIComponent(fileName) +
             '?v=' + Date.now()
         );
 
@@ -720,9 +727,10 @@ async function loadNote(number) {
         text.textContent = content || 'This note is empty.';
 
     } catch (error) {
-        text.textContent = 'Unable to load this note.';
+        text.textContent = 'Unable to load Note ' + number + '.';
+
         status.textContent =
-            'Check NOTES/Note ' + number + '.txt in your GitHub repository.';
+            'Please check NOTES/Note ' + number + '.txt in GitHub.';
     }
 }
 
