@@ -37,7 +37,9 @@ body {
   min-height: 100vh;
 }
 
-/* LOGIN PAGE */
+/* =========================
+   LOGIN PAGE
+========================= */
 
 #loginPage {
   min-height: 100vh;
@@ -153,14 +155,10 @@ input::placeholder {
   margin-top: 60px;
 }
 
-/* HOME PAGE */
 
-#homePage {
-  display: none;
-  min-height: 100vh;
-  min-height: 100dvh;
-  background: #000;
-}
+/* =========================
+   COMMON HEADER
+========================= */
 
 header {
   height: 75px;
@@ -191,12 +189,25 @@ header {
   touch-action: manipulation;
 }
 
-/* SECOND PAGE BACKGROUND IMAGE */
+
+/* =========================
+   SECOND PAGE
+========================= */
+
+#homePage {
+  display: none;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
 
 .scene {
   height: calc(100vh - 75px);
   height: calc(100dvh - 75px);
-  min-height: 550px;
+  min-height: 0;
   position: relative;
   overflow: hidden;
   touch-action: pan-y;
@@ -214,8 +225,6 @@ header {
   background-position: center center;
   background-repeat: no-repeat;
 }
-
-/* WELCOME TEXT */
 
 .welcome {
   position: absolute;
@@ -240,35 +249,80 @@ header {
   letter-spacing: 4px;
 }
 
-/* NEXT BUTTON */
 
-.next-area {
-  background: #050505;
-  padding: 25px 22px 40px;
+/* =========================
+   LARGE PRIVATE NOTIFICATION
+========================= */
+
+#quoteNotification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+
+  width: calc(100% - 36px);
+  max-width: 420px;
+
+  padding: 40px 25px;
+
+  background: #101010;
+  border: 1px solid #c9a84c;
+  border-radius: 12px;
+
+  box-shadow: 0 10px 50px #000d;
+
+  z-index: 100;
   text-align: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    transform .4s ease,
+    opacity .4s ease,
+    visibility .4s ease;
 }
 
-.next-button {
-  width: 100%;
-  max-width: 450px;
-  height: 52px;
+#quoteNotification.show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.notification-title {
+  color: #d6b86a;
+  font-size: 13px;
+  letter-spacing: 4px;
+  margin-bottom: 25px;
+}
+
+.notification-quote {
+  color: #eee;
+  font-size: 15px;
+  line-height: 2;
+  font-weight: 300;
+}
+
+.notification-close {
+  margin-top: 30px;
+  padding: 13px 35px;
+
   background: transparent;
   border: 1px solid #c9a84c;
-  border-radius: 5px;
+
   color: #d6b86a;
-  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
+
   cursor: pointer;
+  border-radius: 4px;
   touch-action: manipulation;
-  transition: .2s;
 }
 
-.next-button:active {
-  background: #17130b;
-}
 
-/* NOTES PAGE */
+/* =========================
+   THIRD PAGE - NOTES
+========================= */
 
 #notesPage {
   display: none;
@@ -304,6 +358,7 @@ header {
   width: 100%;
   max-width: 450px;
   margin: auto;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -312,15 +367,19 @@ header {
 .note-button {
   width: 100%;
   min-height: 53px;
+
   background: #0b0b0b;
   border: 1px solid #302719;
   border-radius: 5px;
+
   color: #d6b86a;
   text-align: left;
   padding: 0 18px;
+
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   letter-spacing: 2px;
+
   cursor: pointer;
   transition: .2s;
   touch-action: manipulation;
@@ -337,14 +396,20 @@ header {
   font-size: 17px;
 }
 
-/* NOTE VIEWER */
+
+/* =========================
+   NOTE VIEWER
+========================= */
 
 #noteViewer {
   display: none;
+
   width: 100%;
   max-width: 450px;
+
   margin: 25px auto 0;
   padding: 22px 18px;
+
   background: #0a0a0a;
   border: 1px solid #c9a84c;
   border-radius: 7px;
@@ -371,70 +436,25 @@ header {
   width: 100%;
   height: 42px;
   margin-top: 25px;
+
   background: transparent;
   border: 1px solid #8d7136;
   border-radius: 4px;
+
   color: #d6b86a;
   font-family: 'Montserrat', sans-serif;
   font-size: 9px;
   letter-spacing: 3px;
+
   cursor: pointer;
   touch-action: manipulation;
 }
 
-/* LOVE QUOTE NOTIFICATION */
 
-#quoteNotification {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translate(-50%, -150%);
-  width: calc(100% - 36px);
-  max-width: 390px;
-  padding: 23px 20px;
-  background: #101010;
-  border: 1px solid #c9a84c;
-  border-radius: 9px;
-  box-shadow: 0 10px 40px #000b;
-  z-index: 100;
-  text-align: center;
-  opacity: 0;
-  transition: transform .6s ease, opacity .6s ease;
-}
-
-#quoteNotification.show {
-  transform: translate(-50%, 0);
-  opacity: 1;
-}
-
-.notification-title {
-  color: #d6b86a;
-  font-size: 10px;
-  letter-spacing: 3px;
-  margin-bottom: 15px;
-}
-
-.notification-quote {
-  color: #eee;
-  font-size: 12px;
-  line-height: 1.9;
-  font-weight: 300;
-}
-
-.notification-close {
-  margin-top: 18px;
-  padding: 9px 22px;
-  background: transparent;
-  border: 1px solid #c9a84c;
-  color: #d6b86a;
-  font-size: 9px;
-  letter-spacing: 2px;
-  cursor: pointer;
-  border-radius: 3px;
-  touch-action: manipulation;
-}
+/* MOBILE */
 
 @media(max-width:480px) {
+
   .welcome h1 {
     letter-spacing: 5px;
   }
@@ -442,13 +462,17 @@ header {
   .scene {
     background-position: center center;
   }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN PAGE -->
+
+<!-- =========================
+     LOGIN PAGE
+========================= -->
 
 <section id="loginPage">
 
@@ -456,7 +480,9 @@ header {
 
     <div class="logo">EWO</div>
 
-    <div class="subtitle">PRIVATE SPACE</div>
+    <div class="subtitle">
+      PRIVATE SPACE
+    </div>
 
     <h2>Welcome Back</h2>
 
@@ -499,7 +525,9 @@ header {
 </section>
 
 
-<!-- SECOND PAGE -->
+<!-- =========================
+     SECOND PAGE
+========================= -->
 
 <section id="homePage">
 
@@ -525,19 +553,34 @@ header {
 
   </div>
 
-  <div class="next-area">
-
-    <button class="next-button" id="nextButton">
-      NEXT →
-
-    </button>
-
-  </div>
-
 </section>
 
 
-<!-- NOTES PAGE -->
+<!-- =========================
+     LARGE NOTIFICATION
+========================= -->
+
+<div id="quoteNotification" role="dialog" aria-modal="true">
+
+  <div class="notification-title">
+    A PRIVATE MESSAGE 🥀
+  </div>
+
+  <p class="notification-quote">
+    "Even if I die, I will always love that heart with all mine.
+    When I'm no longer around, please keep living happily. 🥀"
+  </p>
+
+  <button class="notification-close" id="closeNotification">
+    CLOSE
+  </button>
+
+</div>
+
+
+<!-- =========================
+     THIRD PAGE - NOTES
+========================= -->
 
 <section id="notesPage">
 
@@ -580,27 +623,11 @@ header {
 </section>
 
 
-<!-- LOVE QUOTE NOTIFICATION -->
-
-<div id="quoteNotification" role="status" aria-live="polite">
-
-  <div class="notification-title">
-    A PRIVATE MESSAGE 🥀
-  </div>
-
-  <p class="notification-quote">
-    "Even if I die, I will always love that heart with all mine.
-    When I'm no longer around, please keep living happily. 🥀"
-  </p>
-
-  <button class="notification-close" id="closeNotification">
-    CLOSE
-  </button>
-
-</div>
-
-
 <script>
+
+/* =========================
+   SETTINGS
+========================= */
 
 const PASSWORD = "19971128";
 
@@ -615,7 +642,9 @@ const notification =
 document.getElementById("quoteNotification");
 
 
-// LOGIN
+/* =========================
+   LOGIN
+========================= */
 
 document.getElementById("loginForm")
 .addEventListener("submit", function(e) {
@@ -625,19 +654,25 @@ document.getElementById("loginForm")
   if (password.value === PASSWORD) {
 
     loginPage.style.display = "none";
+
     homePage.style.display = "block";
     notesPage.style.display = "none";
 
     password.value = "";
     error.textContent = "";
 
+    window.scrollTo(0, 0);
+
+    // Show large notification
     setTimeout(function() {
       notification.classList.add("show");
     }, 500);
 
   } else {
 
-    error.textContent = "Incorrect password. Try again.";
+    error.textContent =
+      "Incorrect password. Try again.";
+
     password.value = "";
 
   }
@@ -645,7 +680,9 @@ document.getElementById("loginForm")
 });
 
 
-// SHOW / HIDE PASSWORD
+/* =========================
+   SHOW / HIDE PASSWORD
+========================= */
 
 document.getElementById("toggle")
 .addEventListener("click", function() {
@@ -665,30 +702,52 @@ document.getElementById("toggle")
 });
 
 
-// CLOSE NOTIFICATION
+/* =========================
+   CLOSE NOTIFICATION
+   AUTOMATICALLY OPEN NOTES
+========================= */
 
 document.getElementById("closeNotification")
 .addEventListener("click", function() {
 
   notification.classList.remove("show");
 
+  setTimeout(function() {
+
+    homePage.style.display = "none";
+    notesPage.style.display = "block";
+
+    window.scrollTo(0, 0);
+
+  }, 400);
+
 });
 
 
-// NEXT BUTTON
+/* =========================
+   LOG OUT
+========================= */
 
-document.getElementById("nextButton")
+document.getElementById("logout")
 .addEventListener("click", function() {
 
+  notification.classList.remove("show");
+
+  closeNote();
+
   homePage.style.display = "none";
-  notesPage.style.display = "block";
+  notesPage.style.display = "none";
+
+  loginPage.style.display = "flex";
 
   window.scrollTo(0, 0);
 
 });
 
 
-// BACK BUTTON
+/* =========================
+   BACK TO SECOND PAGE
+========================= */
 
 document.getElementById("backButton")
 .addEventListener("click", function() {
@@ -703,27 +762,12 @@ document.getElementById("backButton")
 });
 
 
-// LOG OUT
+/* =========================
+   CREATE NOTE BUTTONS
+========================= */
 
-document.getElementById("logout")
-.addEventListener("click", function() {
-
-  notification.classList.remove("show");
-
-  closeNote();
-
-  notesPage.style.display = "none";
-  homePage.style.display = "none";
-  loginPage.style.display = "flex";
-
-  window.scrollTo(0, 0);
-
-});
-
-
-// CREATE NOTE BUTTONS 1 - 10
-
-const notesList = document.getElementById("notesList");
+const notesList =
+document.getElementById("notesList");
 
 for (let i = 1; i <= 10; i++) {
 
@@ -734,6 +778,7 @@ for (let i = 1; i <= 10; i++) {
   button.textContent = "NOTE " + i;
 
   const arrow = document.createElement("span");
+
   arrow.textContent = "›";
 
   button.appendChild(arrow);
@@ -747,17 +792,25 @@ for (let i = 1; i <= 10; i++) {
 }
 
 
-// OPEN GITHUB TEXT FILE
+/* =========================
+   OPEN GITHUB TEXT FILE
+========================= */
 
 async function openGitNote(number) {
 
-  const viewer = document.getElementById("noteViewer");
-  const title = document.getElementById("noteTitle");
-  const content = document.getElementById("noteContent");
+  const viewer =
+    document.getElementById("noteViewer");
+
+  const title =
+    document.getElementById("noteTitle");
+
+  const content =
+    document.getElementById("noteContent");
 
   viewer.style.display = "block";
 
   title.textContent = "NOTE " + number;
+
   content.textContent = "Loading note...";
 
   viewer.scrollIntoView({
@@ -767,7 +820,8 @@ async function openGitNote(number) {
 
   try {
 
-    const fileName = encodeURIComponent("Note " + number + ".txt");
+    const fileName =
+      encodeURIComponent("Note " + number + ".txt");
 
     const response = await fetch(
       "NOTES/" + fileName + "?v=" + Date.now()
@@ -779,7 +833,8 @@ async function openGitNote(number) {
 
     const text = await response.text();
 
-    content.textContent = text || "This note is empty.";
+    content.textContent =
+      text || "This note is empty.";
 
   } catch (err) {
 
@@ -793,11 +848,14 @@ async function openGitNote(number) {
 }
 
 
-// CLOSE NOTE
+/* =========================
+   CLOSE NOTE
+========================= */
 
 function closeNote() {
 
-  document.getElementById("noteViewer").style.display = "none";
+  document.getElementById("noteViewer")
+    .style.display = "none";
 
 }
 
@@ -805,7 +863,9 @@ document.getElementById("closeNote")
 .addEventListener("click", closeNote);
 
 
-// DISABLE PINCH ZOOM ON SUPPORTED BROWSERS
+/* =========================
+   DISABLE PINCH ZOOM
+========================= */
 
 document.addEventListener("gesturestart", function(e) {
   e.preventDefault();
@@ -820,7 +880,9 @@ document.addEventListener("gestureend", function(e) {
 }, { passive: false });
 
 
-// DISABLE DOUBLE TAP ZOOM
+/* =========================
+   DISABLE DOUBLE TAP ZOOM
+========================= */
 
 let lastTouchEnd = 0;
 
@@ -835,6 +897,7 @@ document.addEventListener("touchend", function(e) {
   lastTouchEnd = now;
 
 }, { passive: false });
+
 
 </script>
 
