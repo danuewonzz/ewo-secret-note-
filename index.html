@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>EWO | Private Space</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -128,6 +129,7 @@ html, body {
     font-weight: 800;
     letter-spacing: 3px;
     font-family: inherit;
+    cursor: pointer;
 }
 
 .login-error {
@@ -186,6 +188,7 @@ html, body {
     font-family: inherit;
     font-weight: 700;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 .home-background {
@@ -196,11 +199,6 @@ html, body {
 /* THIRD PAGE */
 #notesPage {
     background: #000;
-}
-
-/* NO IMAGE ON THIRD PAGE */
-.notes-background {
-    display: none;
 }
 
 .notes-content {
@@ -240,21 +238,41 @@ html, body {
     color: #ddd;
     font-size: 10px;
     letter-spacing: 3px;
-    font-weight: 400;
 }
 
-/* NOTES MAIN BUTTON */
-.main-notes-btn {
+/* MAIN BUTTONS */
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.main-btn {
+    width: 100%;
     min-height: 65px;
-    justify-content: center;
+    border: 1px solid rgba(214,173,69,.65);
+    border-radius: 10px;
+    background: rgba(15,15,15,.95);
+    color: var(--gold-light);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: .2s;
 }
 
-/* NOTE BUTTONS */
+.main-btn:active {
+    background: rgba(214,173,69,.15);
+    transform: scale(.98);
+}
+
+/* SUB BUTTONS */
 .note-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 12px;
+    margin-top: 15px;
 }
 
 .note-btn {
@@ -262,7 +280,7 @@ html, body {
     min-height: 55px;
     border: 1px solid rgba(214,173,69,.55);
     border-radius: 10px;
-    background: rgba(15,15,15,.95);
+    background: #0e0e0e;
     color: #f5d77b;
     font-family: inherit;
     font-size: 12px;
@@ -273,6 +291,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .note-btn:active {
@@ -281,7 +300,7 @@ html, body {
 
 .note-arrow {
     color: #aaa;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 /* NOTE VIEWER */
@@ -313,6 +332,86 @@ html, body {
     white-space: pre-wrap;
     overflow-wrap: anywhere;
     user-select: text;
+}
+
+/* IMAGE GALLERY */
+.image-gallery {
+    display: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.image-gallery.show {
+    display: grid;
+}
+
+.gallery-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 1px solid rgba(214,173,69,.65);
+    border-radius: 10px;
+    background: #111;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 9px 5px;
+    color: #f5d77b;
+    background: rgba(0,0,0,.75);
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* FULL SCREEN IMAGE PREVIEW */
+.image-preview {
+    display: none;
+    position: fixed;
+    z-index: 50;
+    inset: 0;
+    background: rgba(0,0,0,.97);
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.image-preview.show {
+    display: flex;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.preview-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold-light);
+    background: #111;
+    font-size: 22px;
+    cursor: pointer;
 }
 
 /* NOTIFICATION */
@@ -367,7 +466,6 @@ html, body {
     color: #f1e7d0;
     font-size: 15px;
     line-height: 2;
-    font-weight: 400;
 }
 
 .notification-close {
@@ -382,6 +480,7 @@ html, body {
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 3px;
+    cursor: pointer;
 }
 
 @media (max-width: 360px) {
@@ -439,7 +538,7 @@ html, body {
 </section>
 
 
-<!-- PAGE 3 : NOTES -->
+<!-- PAGE 3 : PRIVATE SPACE -->
 <section id="notesPage" class="page">
 
     <header class="topbar">
@@ -454,16 +553,20 @@ html, body {
             <div class="welcome-subtitle">YOUR OWN PRIVATE WORLD</div>
         </div>
 
-        <!-- MAIN NOTES BUTTON -->
-        <div id="notesMainMenu">
-            <button class="note-btn main-notes-btn"
-                    onclick="toggleNoteButtons()">
-                <span>NOTES</span>
-                <span class="note-arrow">⌄</span>
+        <!-- MAIN BUTTONS -->
+        <div class="main-menu" id="mainMenu">
+
+            <button class="main-btn" onclick="toggleNotes()">
+                NOTES
             </button>
+
+            <button class="main-btn" onclick="toggleImages()">
+                ♡ IMAGE
+            </button>
+
         </div>
 
-        <!-- NOTE 1 - 10 -->
+        <!-- NOTES 1 - 10 -->
         <div id="noteButtonsPage" style="display:none;">
             <div class="note-list" id="noteList"></div>
         </div>
@@ -473,6 +576,9 @@ html, body {
             <div class="note-heading" id="noteHeading"></div>
             <div class="note-text" id="noteText"></div>
         </div>
+
+        <!-- IMAGE GALLERY -->
+        <div class="image-gallery" id="imageGallery"></div>
 
         <div class="footer" style="position:relative; bottom:auto; margin-top:35px;">
             DANU EWONZ • 2026
@@ -502,6 +608,18 @@ html, body {
 </div>
 
 
+<!-- FULL SCREEN IMAGE VIEW -->
+<div class="image-preview" id="imagePreview">
+
+    <button class="preview-close" onclick="closeImagePreview()">
+        ×
+    </button>
+
+    <img id="previewImage" src="" alt="Private Image">
+
+</div>
+
+
 <script>
 const PASSWORD = "19971128";
 
@@ -523,6 +641,7 @@ function showPage(page) {
 
 /* LOGIN */
 function login() {
+
     const enteredPassword =
         document.getElementById("passwordInput").value;
 
@@ -534,12 +653,16 @@ function login() {
         error.textContent = "";
         document.getElementById("passwordInput").value = "";
 
+        resetPrivateSpace();
         showPage(homePage);
 
         notificationOpened = true;
 
         setTimeout(() => {
-            if (notificationOpened && homePage.classList.contains("active")) {
+            if (
+                notificationOpened &&
+                homePage.classList.contains("active")
+            ) {
                 notification.classList.add("show");
             }
         }, 500);
@@ -557,8 +680,9 @@ document.getElementById("passwordInput")
     }
 });
 
-/* CLOSE NOTIFICATION -> THIRD PAGE */
+/* CLOSE NOTIFICATION */
 function closeNotification() {
+
     notification.classList.remove("show");
     notificationOpened = false;
 
@@ -569,42 +693,64 @@ function closeNotification() {
 
 /* LOG OUT */
 function logout() {
+
     notification.classList.remove("show");
     notificationOpened = false;
 
-    closeNote();
-    resetNotesMenu();
-
+    resetPrivateSpace();
     showPage(loginPage);
 }
 
-/* BACK TO SECOND PAGE */
+/* BACK */
 function goBack() {
-    closeNote();
-    resetNotesMenu();
 
+    resetPrivateSpace();
     showPage(homePage);
 }
 
-/* NOTES MAIN BUTTON */
-function toggleNoteButtons() {
-    const buttons = document.getElementById("noteButtonsPage");
+/* RESET */
+function resetPrivateSpace() {
 
-    if (buttons.style.display === "none") {
-        buttons.style.display = "block";
-    } else {
-        buttons.style.display = "none";
-        closeNote();
-    }
-}
-
-/* RESET NOTES MENU */
-function resetNotesMenu() {
     document.getElementById("noteButtonsPage").style.display = "none";
-    closeNote();
+
+    document.getElementById("imageGallery").classList.remove("show");
+
+    document.getElementById("noteViewer").classList.remove("show");
+
+    closeImagePreview();
 }
 
-/* CREATE NOTE BUTTONS 1 - 10 */
+/* NOTES BUTTON */
+function toggleNotes() {
+
+    const notes = document.getElementById("noteButtonsPage");
+    const gallery = document.getElementById("imageGallery");
+
+    const opening = notes.style.display === "none";
+
+    notes.style.display = opening ? "block" : "none";
+
+    gallery.classList.remove("show");
+
+    document.getElementById("noteViewer").classList.remove("show");
+}
+
+/* IMAGE BUTTON */
+function toggleImages() {
+
+    const gallery = document.getElementById("imageGallery");
+    const notes = document.getElementById("noteButtonsPage");
+
+    const opening = !gallery.classList.contains("show");
+
+    gallery.classList.toggle("show", opening);
+
+    notes.style.display = "none";
+
+    document.getElementById("noteViewer").classList.remove("show");
+}
+
+/* CREATE NOTE BUTTONS */
 const noteList = document.getElementById("noteList");
 
 for (let i = 1; i <= 10; i++) {
@@ -625,7 +771,7 @@ for (let i = 1; i <= 10; i++) {
     noteList.appendChild(button);
 }
 
-/* LOAD GITHUB TEXT FILES */
+/* LOAD GITHUB NOTES */
 async function openGitNote(number) {
 
     const viewer = document.getElementById("noteViewer");
@@ -638,6 +784,7 @@ async function openGitNote(number) {
     text.textContent = "Loading note...";
 
     const fileName = encodeURIComponent("Note " + number + ".txt");
+
     const noteURL = "NOTES/" + fileName + "?v=" + Date.now();
 
     try {
@@ -658,16 +805,72 @@ async function openGitNote(number) {
 
         text.textContent =
             "Unable to load this note.\n\n" +
-            "Please check that this file exists:\n" +
-            "NOTES/Note " + number + ".txt";
+            "Please check: NOTES/Note " + number + ".txt";
     }
 }
 
-/* CLOSE NOTE VIEWER */
-function closeNote() {
-    document.getElementById("noteViewer")
-        .classList.remove("show");
+/* CREATE IMAGE GALLERY */
+const imageGallery = document.getElementById("imageGallery");
+
+for (let i = 1; i <= 10; i++) {
+
+    const item = document.createElement("div");
+
+    item.className = "gallery-item";
+
+    const image = document.createElement("img");
+
+    image.src = "IMAGES/Image " + i + ".jpg";
+    image.alt = "Image " + i;
+    image.loading = "lazy";
+
+    image.onerror = function() {
+        item.style.display = "none";
+    };
+
+    const label = document.createElement("div");
+
+    label.className = "gallery-label";
+    label.textContent = "IMAGE " + i;
+
+    item.appendChild(image);
+    item.appendChild(label);
+
+    item.addEventListener("click", function() {
+        openImagePreview(image.src);
+    });
+
+    imageGallery.appendChild(item);
 }
+
+/* OPEN FULL SCREEN IMAGE */
+function openImagePreview(imageSrc) {
+
+    const preview = document.getElementById("imagePreview");
+    const previewImage = document.getElementById("previewImage");
+
+    previewImage.src = imageSrc;
+    preview.classList.add("show");
+}
+
+/* CLOSE IMAGE */
+function closeImagePreview() {
+
+    const preview = document.getElementById("imagePreview");
+
+    preview.classList.remove("show");
+    document.getElementById("previewImage").src = "";
+}
+
+/* CLOSE PREVIEW BY BACKGROUND TAP */
+document.getElementById("imagePreview")
+.addEventListener("click", function(event) {
+
+    if (event.target === this) {
+        closeImagePreview();
+    }
+
+});
 
 /* PREVENT DOUBLE TAP ZOOM */
 document.addEventListener("dblclick", function(event) {
